@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GoldBreakout AI – Asymmetric Gold Swing Trading EA</title>
+    <meta name="description" content="GoldBreakout AI – Asymmetric Gold Swing Trading EA. Backtest the free version, unlock live trading with AI integration. One‑time $1,500 USDC." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #0B0B0B; color: #E0E0E0; }
+        .gold-accent { color: #D4AF37; }
+        .gold-border { border-color: #D4AF37; }
+        .gold-bg { background-color: #D4AF37; }
+        .gold-hover:hover { background-color: #B8942E; }
+        .card-bg { background: #1A1A1A; }
+        .text-silver { color: #C0C0C0; }
+
+        .gold-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+        .gold-glow:hover { box-shadow: 0 0 35px rgba(212, 175, 55, 0.5); }
+        .text-glow { text-shadow: 0 0 8px rgba(212, 175, 55, 0.4); }
+
+        /* Enhanced nav button */
+        .nav-unlock { border: 2px solid #D4AF37; padding: 0.3rem 0.8rem; border-radius: 0.5rem; }
+        .nav-unlock:hover { background: #D4AF37; color: #0B0B0B !important; }
+
+        .chart-container { position: relative; width: 100%; height: 300px; background: #0B0B0B; border: 1px solid #2A2A2A; border-radius: 12px; overflow: hidden; }
+        .chart-grid { position: absolute; width: 100%; height: 100%; }
+        .chart-grid line { stroke: #2A2A2A; stroke-width: 0.5; }
+        .price-line { fill: none; stroke: #D4AF37; stroke-width: 2; stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 4s ease-in-out infinite alternate; }
+        .price-dot { fill: #D4AF37; animation: pulseDot 1.5s ease-in-out infinite; }
+        @keyframes drawLine {
+            0% { stroke-dashoffset: 1000; }
+            100% { stroke-dashoffset: 0; }
+        }
+        @keyframes pulseDot {
+            0%, 100% { r: 4; opacity: 1; }
+            50% { r: 7; opacity: 0.5; }
+        }
+
+        .founder-note { background: linear-gradient(145deg, #1E1E1E 0%, #0F0F0F 100%); border-left: 4px solid #D4AF37; }
+        .signature { font-family: 'Georgia', serif; font-style: italic; }
+        .contact-form input, .contact-form textarea { background: #111; border: 1px solid #333; color: #E0E0E0; padding: 0.75rem; border-radius: 0.5rem; width: 100%; }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: #D4AF37; outline: none; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-black/70 border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+            <span class="text-xl font-bold gold-accent text-glow">GoldBreakout AI</span>
+            <div class="space-x-6 text-sm font-medium text-silver hidden md:flex items-center">
+                <a href="#home" class="hover:text-white transition">Home</a>
+                <a href="#asymmetry" class="hover:text-white transition">Asymmetric Edge</a>
+                <a href="#free" class="hover:text-white transition">Free Version</a>
+                <a href="#founder" class="hover:text-white transition">Founder's Note</a>
+                <a href="#features" class="hover:text-white transition">Features</a>
+                <a href="#pricing" class="nav-unlock gold-accent hover:text-black transition">Get Unlocked</a>
+                <a href="#install" class="hover:text-white transition">Install Guide</a>
+                <a href="#faq" class="hover:text-white transition">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 border-b border-gray-800 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <svg viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 400 L300 300 L500 350 L700 100" stroke="#D4AF37" stroke-width="2" fill="none" />
+                <circle cx="700" cy="100" r="6" fill="#D4AF37" />
+                <circle cx="300" cy="300" r="4" fill="#D4AF37" />
+                <line x1="100" y1="300" x2="700" y2="300" stroke="#D4AF37" stroke-dasharray="5 5" />
+                <text x="250" y="280" fill="#D4AF37" font-size="12" font-family="Inter">BREAKOUT LEVEL</text>
+            </svg>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 relative z-10">
+            Capturing Gold’s Volatility <br class="hidden md:block" />
+            <span class="gold-accent text-glow">with Mathematical Precision</span>
+        </h1>
+        <p class="max-w-2xl text-lg text-silver mb-10 relative z-10">
+            GoldBreakout AI is not a scalping bot. It’s a capital weapon engineered for asymmetric returns –<br />
+            risking small to capture multi‑day gold surges, <strong class="text-white">whether price explodes upward or collapses downward</strong>.<br />
+            The EA doesn't need gold to go up. It needs gold to <strong class="text-white">move</strong>. Volatility is the fuel.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 relative z-10">
+            <a href="#free" class="px-8 py-3 gold-bg text-black font-semibold rounded gold-glow hover:bg-opacity-90 transition">Try It Free</a>
+            <a href="#pricing" class="px-8 py-3 border border-gold-accent gold-accent font-semibold rounded hover:bg-gold-accent hover:text-black transition">Get Unlocked</a>
+            <a href="#asymmetry" class="px-8 py-3 border border-gray-600 rounded text-silver hover:border-gray-400 transition">The Strategy</a>
+        </div>
+        <div class="mt-12 max-w-md w-full relative z-10">
+            <svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="40" y1="140" x2="360" y2="140" stroke="#D4AF37" stroke-width="2" stroke-dasharray="6 6" />
+                <text x="250" y="130" fill="#D4AF37" font-size="10" font-family="Inter">RESISTANCE</text>
+                <path d="M40 160 Q 80 155, 120 145 T 200 120 T 280 90 T 350 60" stroke="#D4AF37" stroke-width="3" fill="none" stroke-linecap="round" />
+                <circle cx="350" cy="60" r="12" fill="#D4AF37" opacity="0.3" />
+                <circle cx="350" cy="60" r="6" fill="#D4AF37" />
+                <text x="360" y="55" fill="#D4AF37" font-size="12" font-family="Inter" font-weight="bold">BREAKOUT</text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Asymmetric Edge -->
+    <section id="asymmetry" class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800">
+        <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">The Asymmetric Edge</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6 text-silver text-lg leading-relaxed">
+                <p>
+                    <strong class="text-white">Poor people trade scared. Rich people trade smart.</strong><br/>
+                    Most retail traders blow their accounts because they fixate on tiny, guaranteed profits – scalping ticks and closing out too soon. They fear loss, so they never let a trade run. The result? Death by a thousand cuts.
+                </p>
+                <p>
+                    GoldBreakout AI is built on <span class="gold-accent font-semibold">asymmetric risk</span>: risking a small, defined amount to capture an outsized, multi‑day move. Gold regularly delivers 2,000 – 5,000 point trends <strong class="text-white">in both directions</strong>. By combining a daily breakout entry, intelligent trailing stops, and partial profit taking, the EA transforms volatility from a threat into a weapon.
+                </p>
+                <p>
+                    This is your <span class="gold-accent font-semibold">capital weapon</span>. The equity floor protection, risk‑based lot sizing, and order slicing are your <strong>shield</strong>. The dynamic offset, break‑even lock, and precision trailing are your <strong>sword</strong>. When Gold moves – <strong>up or down</strong> – this EA ensures you’re on the right side and stays there until the move exhausts itself.
+                </p>
+            </div>
+            <div class="bg-gray-900 rounded-2xl p-6 card-bg border border-gray-800 flex items-center justify-center">
+                <div class="chart-container">
+                    <svg class="chart-grid" viewBox="0 0 600 300" preserveAspectRatio="none">
+                        <line x1="0" y1="50" x2="600" y2="50" />
+                        <line x1="0" y1="100" x2="600" y2="100" />
+                        <line x1="0" y1="150" x2="600" y2="150" />
+                        <line x1="0" y1="200" x2="600" y2="200" />
+                        <line x1="0" y1="250" x2="600" y2="250" />
+                        <polyline class="price-line" points="20,220 80,200 140,230 200,180 260,150 320,170 380,120 440,90 500,110 560,60" />
+                        <circle class="price-dot" cx="560" cy="60" r="4" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Version (Backtest Only) -->
+    <section id="free" class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800 text-center">
+        <h2 class="text-3xl font-semibold mb-8 gold-accent text-glow">Free Backtest‑Only Version</h2>
+        <p class="text-silver max-w-2xl mx-auto mb-10 text-lg">
+            The core engine is completely free and <strong class="text-white">fully functional inside the MetaTrader 5 Strategy Tester</strong>. You can run extensive backtests, verify the logic, and see the equity curve – but it <strong>will not trade live</strong>. This restriction is hard‑coded so you can test with confidence and no pressure.
+        </p>
+        <div class="card-bg border border-gray-800 rounded-2xl p-8 max-w-2xl mx-auto text-left">
+            <h3 class="text-2xl font-semibold text-white mb-4 gold-accent">What the Free Version Includes</h3>
+            <ul class="space-y-3 text-silver">
+                <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Full breakout logic & trade management</li>
+                <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Can be run in MT5 Strategy Tester (backtesting)</li>
+                <li class="flex items-start"><span class="gold-accent mr-2">✓</span> All parameters locked at optimal defaults</li>
+                <li class="flex items-start"><span class="gold-accent mr-2">✓</span> No registration, no expiry</li>
+            </ul>
+            <!-- Download button in Free Version section -->
+            <div class="mt-8 text-center">
+                <a href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="inline-block px-6 py-3 gold-bg text-black font-semibold rounded gold-glow hover:bg-opacity-90 transition" download>
+                    Download Free EA
+                </a>
+                <p class="text-xs text-silver mt-2">Click to download the <code class="bg-gray-800 px-1 rounded">GoldBreakoutAI_Free.ex5</code> file.</p>
+            </div>
+            <p class="mt-6 text-sm text-silver">
+                The free EA will refuse to trade on a live chart. You must buy the Lifetime License to unlock live trading and parameter customization.
+            </p>
+        </div>
+    </section>
+
+    <!-- AI Adaptation -->
+    <section class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800">
+        <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">Beyond Asymmetry: AI‑Powered Adaptation</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-4 text-silver text-lg leading-relaxed">
+                <p>
+                    The default strategy thrives on <strong>asymmetric breakouts</strong>. It’s designed to wait for the big runner – whether that’s a rally or a crash. But what about the 80% of time when markets chop sideways? That’s where <span class="gold-accent font-semibold">AI agents</span> unlock the next level.
+                </p>
+                <p>
+                    With the Lifetime License, you gain access to the <strong>Global Variable interface</strong>. This lets you (or an AI agent you control) dynamically adjust core parameters in real time. An AI agent can analyze market conditions, detect chop, and shift the EA into a low‑energy mode that scalps small ranges instead of waiting for the breakout.
+                </p>
+                <p class="text-sm opacity-80">
+                    <strong>Note:</strong> AI agents and their setup are entirely your responsibility. The EA provides the pipes – you (or your AI) turn the knobs.
+                </p>
+            </div>
+            <div class="card-bg border border-gold-accent rounded-2xl p-8">
+                <h3 class="text-xl font-semibold text-white mb-4 gold-accent">Lifetime License Unlocks</h3>
+                <ul class="space-y-3 text-silver">
+                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Live trading & full parameter customization</li>
+                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Global Variable bridge for external AI systems</li>
+                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Switch between "breakout" and "chop‑adaptive" modes on the fly</li>
+                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Unlimited accounts, lifetime updates</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder's Note -->
+    <section id="founder" class="py-24 px-6 max-w-4xl mx-auto border-t border-gray-800">
+        <div class="founder-note rounded-2xl p-8 md:p-12 card-bg border border-gray-800">
+            <h2 class="text-3xl font-semibold mb-8 gold-accent text-glow text-center">A Personal Note from the Founder</h2>
+            <div class="space-y-6 text-silver leading-relaxed">
+                <p>
+                    I’m from a country where jobs don’t pay well. The system incentivizes brilliant, hard‑working people to leave for higher wages abroad. I refused. I believe self‑sovereignty is the only true freedom, and that financial markets – when approached with mathematical rigor and precise execution – can be the escape.
+                </p>
+                <p>
+                    GoldBreakout AI was born out of necessity, not entertainment. I needed a capital weapon that could generate asymmetric returns: risking a little to capture a lot. I’m not a bank, I can’t afford to win 51% of the time with tiny gains. I need the big runners – the 2,000, 3,000, 5,000 point surges that happen a few times a year, <strong class="text-white">up or down</strong>. This EA is built to survive the chop and feast on the volatility.
+                </p>
+                <p>
+                    I’m giving away the core engine for <strong class="text-white">free</strong> – but only for backtesting in the Strategy Tester. You can verify the results with zero risk. If you decide you want to unlock live trading, custom inputs, and AI integration, you pay a single <span class="gold-accent font-semibold">one‑time $1,500 USDC</span>. No subscriptions, no hidden fees, no royalty on your profits.
+                </p>
+                <p>
+                    All payments are in USDC. I believe in crypto as a tool for self‑sovereignty. You hold your keys, you control your money. That’s the way it should be.
+                </p>
+                <p class="text-white font-medium">
+                    This isn’t a get‑rich‑quick scheme. It’s a precision instrument. If you’re ready to treat trading like a mathematical business, I welcome you.
+                </p>
+                <div class="pt-4 border-t border-gray-700 text-right">
+                    <span class="signature gold-accent text-2xl">— Your Founder</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800">
+        <h2 class="text-3xl font-semibold mb-16 text-center gold-accent text-glow">Core Technology</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent gold-glow transition-all duration-300">
+                <div class="gold-accent text-2xl mb-4">⚡</div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Dynamic Entry</h3>
+                <p class="text-silver text-sm">Smart offset from yesterday’s high/low filters noise, ensuring only genuine breakouts are traded.</p>
+            </div>
+            <div class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent gold-glow transition-all duration-300">
+                <div class="gold-accent text-2xl mb-4">📊</div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Partial Take Profit</h3>
+                <p class="text-silver text-sm">Secures profits early, reducing risk while keeping a runner to capture the full trend.</p>
+            </div>
+            <div class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent gold-glow transition-all duration-300">
+                <div class="gold-accent text-2xl mb-4">🛡️</div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Breakeven + Lock</h3>
+                <p class="text-silver text-sm">Once a profit threshold is reached, SL moves to break‑even, then to a locked profit – guarantee a winner.</p>
+            </div>
+            <div class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent gold-glow transition-all duration-300">
+                <div class="gold-accent text-2xl mb-4">🎯</div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Precision Trailing</h3>
+                <p class="text-silver text-sm">Trails stop loss with a custom buffer, avoiding false exits during volatile spikes.</p>
+            </div>
+            <div class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent gold-glow transition-all duration-300">
+                <div class="gold-accent text-2xl mb-4">🔢</div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Risk‑Based Lot Sizing</h3>
+                <p class="text-silver text-sm">Automatically adjusts your position size to a percentage of your balance – never over‑leverage.</p>
+            </div>
+            <div class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent gold-glow transition-all duration-300">
+                <div class="gold-accent text-2xl mb-4">🧠</div>
+                <h3 class="text-xl font-semibold mb-3 text-white">AI‑Ready Adaptability</h3>
+                <p class="text-silver text-sm">Key parameters are exposed via Global Variables, enabling dynamic regime shifts for trending or ranging markets.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety First -->
+    <section class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800">
+        <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">Safety Is the Priority</h2>
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="bg-gray-900 rounded-2xl p-8 card-bg border border-gray-800 hover:border-gold-accent transition">
+                <h3 class="text-2xl font-semibold text-white mb-4">Equity Floor Protection</h3>
+                <p class="text-silver leading-relaxed">Define a starting balance and max drawdown %. If equity falls below the floor, the EA closes all positions and stops trading – a non‑negotiable safety clamp.</p>
+            </div>
+            <div class="bg-gray-900 rounded-2xl p-8 card-bg border border-gray-800 hover:border-gold-accent transition">
+                <h3 class="text-2xl font-semibold text-white mb-4">Order Slicing</h3>
+                <p class="text-silver leading-relaxed">Large lots are split into smaller tickets to stay under broker limits and ensure smooth execution – fully automatic.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance (Animated Chart) -->
+    <section class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800 text-center">
+        <h2 class="text-3xl font-semibold mb-6 gold-accent text-glow">Live Strategy Simulation</h2>
+        <p class="text-silver mb-10 max-w-2xl mx-auto">
+            Watch the asymmetric engine in motion. This chart illustrates how the EA captures gold's trending bursts.
+        </p>
+        <div class="chart-container mx-auto" style="max-width: 700px;">
+            <svg class="chart-grid" viewBox="0 0 700 300" preserveAspectRatio="none">
+                <line x1="0" y1="50" x2="700" y2="50" />
+                <line x1="0" y1="100" x2="700" y2="100" />
+                <line x1="0" y1="150" x2="700" y2="150" />
+                <line x1="0" y1="200" x2="700" y2="200" />
+                <line x1="0" y1="250" x2="700" y2="250" />
+                <polyline class="price-line" points="30,230 90,210 150,240 210,190 270,160 330,180 390,130 450,100 510,120 570,80 630,50 670,40" />
+                <circle class="price-dot" cx="670" cy="40" r="4" />
+            </svg>
+        </div>
+        <p class="text-xs text-silver mt-4 italic">Real backtest results are available on request. The chart is a schematic of a typical trend‑capture sequence.</p>
+    </section>
+
+    <!-- Pricing with Email Form -->
+    <section id="pricing" class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800 text-center">
+        <h2 class="text-3xl font-semibold mb-6 gold-accent text-glow">Get the Unlocked Weapon</h2>
+        <p class="text-silver mb-12 max-w-2xl mx-auto">
+            You’ve tested the free version in the Strategy Tester. Now take full control for live markets.
+        </p>
+        <div class="max-w-md mx-auto">
+            <div class="card-bg border border-gold-accent rounded-2xl p-8 flex flex-col items-center">
+                <h3 class="text-2xl font-semibold text-white mb-4">Lifetime License</h3>
+                <p class="text-4xl font-bold gold-accent mb-6">$1,500</p>
+                <ul class="text-silver space-y-3 mb-8 w-full">
+                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Live trading & unlimited backtesting</li>
+                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Full input customization</li>
+                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> AI integration via Global Variables</li>
+                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Manual chop‑adaptation capability</li>
+                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Lifetime updates & priority support</li>
+                </ul>
+
+                <button id="buyNowBtn" class="w-full py-3 gold-bg text-black font-semibold rounded text-center gold-glow hover:bg-opacity-90 transition">
+                    Buy Now – $1,500 USDC
+                </button>
+                <p class="text-xs text-silver mt-3">One‑time payment. No refunds. I'll contact you personally.</p>
+
+                <div id="contactForm" class="hidden mt-6 w-full contact-form">
+                    <form action="https://formspree.io/f/mgodwyda" method="POST">
+                        <input type="email" name="_replyto" placeholder="Your email address" required class="mb-3" />
+                        <textarea name="message" rows="3" placeholder="Your message or questions..." required class="mb-3"></textarea>
+                        <input type="hidden" name="_subject" value="GoldBreakout AI Purchase Inquiry" />
+                        <button type="submit" class="w-full py-2 gold-bg text-black font-semibold rounded hover:bg-opacity-90 transition">Send Inquiry</button>
+                    </form>
+                    <p class="text-xs text-silver mt-2">I'll reply to you within 24h with payment details and delivery.</p>
+                </div>
+            </div>
+            <p class="mt-6 text-sm text-silver">
+                Still testing? <a href="#free" class="gold-accent hover:underline">Keep using the free backtester</a> as long as you like.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-6 max-w-3xl mx-auto border-t border-gray-800">
+        <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">Frequently Asked Questions</h2>
+        <div class="space-y-6">
+            <details class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent transition">
+                <summary class="text-white font-medium cursor-pointer">Why is the free version backtest‑only?</summary>
+                <p class="mt-3 text-silver text-sm">So you can thoroughly evaluate the strategy with zero risk. The free EA is identical to the paid one in logic, but hard‑coded to refuse live orders. You can test every scenario in the MT5 Strategy Tester before deciding to upgrade.</p>
+            </details>
+            <details class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent transition">
+                <summary class="text-white font-medium cursor-pointer">Can I run the free EA on a demo account?</summary>
+                <p class="mt-3 text-silver text-sm">No – the free version will not trade on any live chart, demo or real. It is designed exclusively for the Strategy Tester.</p>
+            </details>
+            <details class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent transition">
+                <summary class="text-white font-medium cursor-pointer">What’s the difference between Free and Lifetime?</summary>
+                <p class="mt-3 text-silver text-sm">The free version has all trading features but is restricted to backtesting and parameters are locked. Lifetime unlocks live trading, full input customization, and the Global Variable interface for AI integration.</p>
+            </details>
+            <details class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent transition">
+                <summary class="text-white font-medium cursor-pointer">Can I use my own AI agent?</summary>
+                <p class="mt-3 text-silver text-sm">Yes – with Lifetime, the EA exposes a real‑time parameter bridge via Global Variables. You (or your AI) can push new values for trailing stop, breakeven, offset, etc. Full documentation is provided after purchase.</p>
+            </details>
+            <details class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent transition">
+                <summary class="text-white font-medium cursor-pointer">What is your refund policy?</summary>
+                <p class="mt-3 text-silver text-sm">All sales are final. Please test the free version thoroughly in the Strategy Tester before upgrading.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Installation Guide with Download Link -->
+    <section id="install" class="py-24 px-6 max-w-3xl mx-auto border-t border-gray-800">
+        <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">Installation Guide</h2>
+        <div class="card-bg border border-gray-800 rounded-2xl p-8 text-silver space-y-6">
+            <div>
+                <h3 class="text-xl font-semibold text-white mb-3">For the Free Backtest Version</h3>
+                <ol class="list-decimal list-inside text-sm space-y-2">
+                    <li><a href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="gold-accent hover:underline" download>Click here to download the free EA</a> (<code class="bg-gray-800 px-1 rounded">GoldBreakoutAI_Free.ex5</code>).</li>
+                    <li>Open MetaTrader 5. Go to <strong>File → Open Data Folder</strong>.</li>
+                    <li>Navigate to <strong>MQL5 → Experts</strong> and paste the file there.</li>
+                    <li>Restart MT5 or right‑click the Navigator panel and select <strong>Refresh</strong>.</li>
+                    <li>Open the <strong>Strategy Tester</strong> (View → Strategy Tester).</li>
+                    <li>Select <strong>GoldBreakoutAI_Free</strong> from the Expert list, choose <strong>XAUUSD</strong> and your preferred testing period, then run the test.</li>
+                </ol>
+                <p class="mt-3 text-sm">Note: The free EA will <strong>not</strong> work on a live chart – it's exclusively for backtesting.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-white mb-3">For the Lifetime License (after purchase)</h3>
+                <p class="text-sm">After your payment is confirmed, I'll send you the unlocked EA file (<code>GoldBreakoutAI_Lifetime.ex5</code>) along with the full documentation package. Install it the same way as above, then drag it onto any <strong>XAUUSD</strong> live/demo chart, enable Algo Trading, and you’re ready to go.</p>
+                <p class="text-sm mt-2">The documentation package contains the complete input parameter reference, Global Variable names, and AI integration guide.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-gray-800 text-center text-silver text-sm">
+        <p class="mb-2">© 2025 GoldBreakout AI. All rights reserved.</p>
+        <p class="max-w-2xl mx-auto opacity-75">
+            Trading foreign exchange on margin carries a high level of risk and may not be suitable for all investors. Past performance is not indicative of future results.
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById('buyNowBtn').addEventListener('click', function() {
+            var form = document.getElementById('contactForm');
+            if (form.classList.contains('hidden')) {
+                form.classList.remove('hidden');
+                this.textContent = 'Close Form';
+            } else {
+                form.classList.add('hidden');
+                this.textContent = 'Buy Now – $1,500 USDC';
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
