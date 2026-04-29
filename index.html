@@ -20,10 +20,6 @@
         .gold-glow:hover { box-shadow: 0 0 35px rgba(212, 175, 55, 0.5); }
         .text-glow { text-shadow: 0 0 8px rgba(212, 175, 55, 0.4); }
 
-        /* Enhanced nav button */
-        .nav-unlock { border: 2px solid #D4AF37; padding: 0.3rem 0.8rem; border-radius: 0.5rem; }
-        .nav-unlock:hover { background: #D4AF37; color: #0B0B0B !important; }
-
         .chart-container { position: relative; width: 100%; height: 300px; background: #0B0B0B; border: 1px solid #2A2A2A; border-radius: 12px; overflow: hidden; }
         .chart-grid { position: absolute; width: 100%; height: 100%; }
         .chart-grid line { stroke: #2A2A2A; stroke-width: 0.5; }
@@ -42,6 +38,8 @@
         .signature { font-family: 'Georgia', serif; font-style: italic; }
         .contact-form input, .contact-form textarea { background: #111; border: 1px solid #333; color: #E0E0E0; padding: 0.75rem; border-radius: 0.5rem; width: 100%; }
         .contact-form input:focus, .contact-form textarea:focus { border-color: #D4AF37; outline: none; }
+        .contact-form label { font-size: 0.85rem; color: #C0C0C0; }
+        .contact-form label a { color: #D4AF37; text-decoration: underline; }
     </style>
 </head>
 <body class="antialiased">
@@ -59,6 +57,7 @@
                 <a href="#pricing" class="nav-unlock gold-accent hover:text-black transition">Get Unlocked</a>
                 <a href="#install" class="hover:text-white transition">Install Guide</a>
                 <a href="#faq" class="hover:text-white transition">FAQ</a>
+                <a href="#legal" class="hover:text-white transition">Legal</a>
             </div>
         </div>
     </nav>
@@ -308,10 +307,15 @@
                 </button>
                 <p class="text-xs text-silver mt-3">One‑time payment. No refunds. I'll contact you personally.</p>
 
-                <div id="contactForm" class="hidden mt-6 w-full contact-form">
+                <div id="contactForm" class="hidden mt-6 w-full contact-form text-left">
                     <form action="https://formspree.io/f/mgodwyda" method="POST">
                         <input type="email" name="_replyto" placeholder="Your email address" required class="mb-3" />
                         <textarea name="message" rows="3" placeholder="Your message or questions..." required class="mb-3"></textarea>
+                        <!-- Legal consent checkbox -->
+                        <label class="flex items-start mb-3">
+                            <input type="checkbox" name="legal_consent" required class="mr-2 mt-0.5" />
+                            <span>I have read and agree to the <a href="#legal" target="_blank">Terms & Conditions, Privacy Policy, and Disclaimer</a>. I acknowledge that by completing the purchase, I will lose my 14‑day right of withdrawal under EU law once the digital product is delivered.</span>
+                        </label>
                         <input type="hidden" name="_subject" value="GoldBreakout AI Purchase Inquiry" />
                         <button type="submit" class="w-full py-2 gold-bg text-black font-semibold rounded hover:bg-opacity-90 transition">Send Inquiry</button>
                     </form>
@@ -351,6 +355,50 @@
         </div>
     </section>
 
+    <!-- Legal & Compliance Section -->
+    <section id="legal" class="py-24 px-6 max-w-4xl mx-auto border-t border-gray-800">
+        <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">Legal & Compliance</h2>
+        <div class="card-bg border border-gray-800 rounded-2xl p-8 space-y-8 text-silver text-sm">
+            <details class="group">
+                <summary class="text-lg font-semibold text-white cursor-pointer">Disclaimer</summary>
+                <div class="mt-4 space-y-3">
+                    <p><strong>GoldBreakout AI is a software tool, not an investment advisor.</strong></p>
+                    <p>The content on this website is for informational purposes only and does not constitute financial, investment, tax, or legal advice. No representation is being made that any account will or is likely to achieve profits or losses similar to those discussed or shown in backtests. <strong>Past performance is not indicative of future results.</strong></p>
+                    <p>Trading foreign exchange on margin involves a high degree of risk and may not be suitable for all investors. You could lose all of your capital. You should consider your financial situation, risk tolerance, and experience before using any automated trading software.</p>
+                    <p>GoldBreakout AI is provided “as‑is” without any warranty of any kind, either express or implied, including but not limited to the implied warranties of merchantability or fitness for a particular purpose. The developer assumes no responsibility or liability for any trading losses, data inaccuracies, or any other damages arising from the use of this software. You assume full responsibility for all trading decisions and outcomes.</p>
+                    <p>The “Free Backtest‑Only Version” is strictly limited to the Strategy Tester and will not execute live trades.</p>
+                </div>
+            </details>
+
+
+            <details class="group">
+                <summary class="text-lg font-semibold text-white cursor-pointer">Privacy Policy</summary>
+                <div class="mt-4 space-y-3">
+                    <p>GoldBreakout AI (“we,” “us,” “our”) is committed to protecting your privacy. This Privacy Policy explains how we handle the personal information you provide through our website.</p>
+                    <p><strong>Data Collection:</strong> When you submit the contact form on our “Buy Now” page, we collect your email address and any message you choose to send. This data is transmitted via <a href="https://formspree.io" class="gold-accent hover:underline" target="_blank">Formspree</a> (a third‑party service) and forwarded to us.</p>
+                    <p><strong>Purpose:</strong> We use your email address solely to respond to your inquiry, provide payment instructions, and deliver the purchased software. We do not use it for marketing or promotional communications without your explicit consent.</p>
+                    <p><strong>Storage and Processing:</strong> Your data is hosted on Formspree’s servers in the United States. Formspree’s privacy practices can be found <a href="https://formspree.io/legal/privacy-policy/" class="gold-accent hover:underline" target="_blank">here</a>.</p>
+                    <p><strong>Your Rights (GDPR):</strong> If you are a resident of the European Union, you have the right to access, rectify, or erase your personal data. To exercise these rights, please contact us at <a href="mailto:lordkahmah@gmail.com" class="gold-accent hover:underline">lordkahmah@gmail.com</a> or simply reply to any communication we send you. We will process your request within 30 days.</p>
+                    <p><strong>Consent:</strong> By submitting the contact form and checking the consent box, you agree to the collection and processing of your data as described in this policy.</p>
+                    <p>We do not sell, share, or rent your personal information to anyone else.</p>
+                </div>
+            </details>
+
+            <details class="group">
+                <summary class="text-lg font-semibold text-white cursor-pointer">Terms and Conditions</summary>
+                <div class="mt-4 space-y-3">
+                    <p>By downloading, purchasing, or using GoldBreakout AI (the “Software”), you agree to be bound by these Terms and Conditions. If you do not agree, do not use the Software.</p>
+                    <p><strong>License:</strong> Upon purchase, you are granted a non‑exclusive, non‑transferable, lifetime license to use the Software on one personal trading account (or unlimited accounts, depending on the product you purchased). You may not sublicense, resell, lease, or redistribute the Software without prior written permission.</p>
+                    <p><strong>Intellectual Property:</strong> All code, documentation, algorithms, and associated materials are the exclusive property of GoldBreakout AI. You may not decompile, reverse‑engineer, or attempt to extract the source code from the compiled executable files.</p>
+                    <p><strong>Refund Policy:</strong> All sales are final. We do not offer refunds. Please use the free backtest‑only version to thoroughly evaluate the Software before purchase.</p>
+                    <p><strong>Withdrawal Right (EU consumers):</strong> Under Portuguese and EU consumer law, you have a right to withdraw from a distance contract within 14 days. However, because the Software consists of digital content that is delivered immediately after purchase, you will lose that right once the files are made available to you. By checking the consent box on the order form, you explicitly acknowledge and agree to the immediate delivery of the digital content and the consequent loss of your withdrawal right.</p>
+                    <p><strong>Limitation of Liability:</strong> In no event will GoldBreakout AI or its developer be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in connection with the use or performance of the Software, including but not limited to trading losses, loss of profit, or data corruption. This limitation applies even if we have been advised of the possibility of such damages.</p>
+                    <p><strong>Governing Law:</strong> These Terms shall be governed by and construed in accordance with the laws of Portugal, without regard to its conflict of law provisions. Any dispute arising out of or relating to these Terms shall be subject to the exclusive jurisdiction of the Portuguese courts.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
     <!-- Installation Guide with Download Link -->
     <section id="install" class="py-24 px-6 max-w-3xl mx-auto border-t border-gray-800">
         <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">Installation Guide</h2>
@@ -380,6 +428,9 @@
         <p class="mb-2">© 2025 GoldBreakout AI. All rights reserved.</p>
         <p class="max-w-2xl mx-auto opacity-75">
             Trading foreign exchange on margin carries a high level of risk and may not be suitable for all investors. Past performance is not indicative of future results.
+        </p>
+        <p class="mt-2">
+            <a href="#legal" class="gold-accent hover:underline">Legal & Compliance</a>
         </p>
     </footer>
 
