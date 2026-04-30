@@ -1,458 +1,679 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoldBreakout AI – Asymmetric Gold Swing Trading EA</title>
-    <meta name="description" content="GoldBreakout AI – Asymmetric Gold Swing Trading EA. Backtest the free version, unlock live trading with AI integration. One‑time $1,500 USDC." />
+<html lang="en" style="--accent: #D4AF37; --accent-hover: #c09b23; --accent-rgb: 212, 175, 55;"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldBreakout AI Editor – Edit &amp; Save Site Text</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #0B0B0B; color: #E0E0E0; }
-        .gold-accent { color: #D4AF37; }
-        .gold-border { border-color: #D4AF37; }
-        .gold-bg { background-color: #D4AF37; }
-        .gold-hover:hover { background-color: #B8942E; }
-        .card-bg { background: #1A1A1A; }
-        .text-silver { color: #C0C0C0; }
+        /* Same CSS as the live site (abbreviated for clarity) */
+        :root {
+            --accent: #60A5FA;
+            --accent-hover: #3B82F6;
+            --accent-rgb: 96, 165, 250;
+            --bg: #0B0B0B;
+            --bg-secondary: #1A1A1A;
+            --text-primary: #E0E0E0;
+            --text-secondary: #9CA3AF;
+            --card-bg: #1A1A1A;
+            --card-border: #2A2A2A;
+            --input-bg: #111827;
+            --input-border: #374151;
+            --nav-bg: rgba(11,11,11,0.95);
+            --nav-border: #2A2A2A;
+            --hover-bg: #1F2937;
+            --button-text: #000000;
+            --footer-bg: #1A1A1A;
+        }
+        body.light {
+            --accent: #2563EB;
+            --accent-hover: #1D4ED8;
+            --accent-rgb: 37, 99, 235;
+            --bg: #FFFFFF;
+            --bg-secondary: #F9FAFB;
+            --text-primary: #1A1A1A;
+            --text-secondary: #6B7280;
+            --card-bg: #FFFFFF;
+            --card-border: #E5E7EB;
+            --input-bg: #F3F4F6;
+            --input-border: #D1D5DB;
+            --nav-bg: rgba(255,255,255,0.95);
+            --nav-border: #E5E7EB;
+            --hover-bg: #F3F4F6;
+            --button-text: #FFFFFF;
+            --footer-bg: #F9FAFB;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            transition: background 0.3s, color 0.3s;
+            margin: 0;
+        }
+        .accent { color: var(--accent); }
+        .accent-border { border-color: var(--accent); }
+        .accent-bg { background-color: var(--accent); color: var(--button-text); }
+        .accent-bg:hover { background-color: var(--accent-hover); }
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .bg-main { background: var(--bg); }
+        .bg-card { background: var(--card-bg); }
+        .border-card { border-color: var(--card-border); }
+        .input-field {
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-primary);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            width: 100%;
+        }
+        .input-field:focus { border-color: var(--accent); outline: none; }
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--button-text);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-primary:hover { background-color: var(--accent-hover); }
+        .btn-outline {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-outline:hover { background: var(--accent); color: var(--button-text); }
+        .nav-link { color: var(--text-secondary); transition: color 0.2s; }
+        .nav-link:hover { color: var(--text-primary); }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.15);
+        }
+        .founder-note {
+            background: linear-gradient(145deg, var(--bg-secondary), var(--card-bg));
+            border-left: 4px solid var(--accent);
+        }
+        .signature { font-family: 'Georgia', serif; font-style: italic; color: var(--accent); }
 
-        .gold-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-        .gold-glow:hover { box-shadow: 0 0 35px rgba(212, 175, 55, 0.5); }
-        .text-glow { text-shadow: 0 0 8px rgba(212, 175, 55, 0.4); }
+        /* Fixed top navigation */
+        #topNav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--nav-border);
+            z-index: 50;
+            backdrop-filter: blur(8px);
+            padding: 0.75rem 1rem;
+        }
+        #topNav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #topNav .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .nav-pill {
+            background-color: var(--accent);
+            color: var(--button-text);
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .nav-pill:hover { background-color: var(--accent-hover); }
+        @media (max-width: 767px) {
+            #topNav .nav-links { display: none; }
+        }
+        #mobileMenuBtn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+        @media (max-width: 767px) {
+            #mobileMenuBtn { display: block; }
+        }
+        #mobileDropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--nav-border);
+            padding: 1rem;
+            flex-direction: column;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+        #mobileDropdown.open { display: flex; }
 
-        .chart-container { position: relative; width: 100%; height: 300px; background: #0B0B0B; border: 1px solid #2A2A2A; border-radius: 12px; overflow: hidden; }
-        .chart-grid { position: absolute; width: 100%; height: 100%; }
-        .chart-grid line { stroke: #2A2A2A; stroke-width: 0.5; }
-        .price-line { fill: none; stroke: #D4AF37; stroke-width: 2; stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 4s ease-in-out infinite alternate; }
-        .price-dot { fill: #D4AF37; animation: pulseDot 1.5s ease-in-out infinite; }
-        @keyframes drawLine {
-            0% { stroke-dashoffset: 1000; }
+        /* Gear button – top left below header */
+        .gear-btn {
+            position: fixed;
+            top: 5rem;
+            left: 1rem;
+            z-index: 55;
+            font-size: 1.25rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .gear-btn:hover { background: var(--hover-bg); }
+
+        /* Settings panel */
+        .settings-panel {
+            position: fixed; top: 0; right: -300px;
+            width: 280px; height: 100vh;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--card-border);
+            transition: right 0.3s; z-index: 100; padding: 1.5rem;
+        }
+        .settings-panel.open { right: 0; }
+        .settings-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 99;
+            display: none;
+        }
+        .settings-overlay.show { display: block; }
+
+        /* Editable indicator */
+        [contenteditable="true"] {
+            outline: 1px dashed rgba(var(--accent-rgb), 0.6);
+            outline-offset: 2px;
+        }
+        [contenteditable="true"]:hover { background: rgba(var(--accent-rgb), 0.1); }
+
+        /* Hero animations */
+        @keyframes dashOffset { 0%{stroke-dashoffset:400;} 100%{stroke-dashoffset:0;} }
+        @keyframes pulseText { 0%,100%{opacity:0.7;transform:scale(1);} 50%{opacity:1;transform:scale(1.05);} }
+        .hero-anim .line { stroke-dasharray:400; animation:dashOffset 3s ease-in-out infinite alternate; }
+        .hero-anim .label { animation:pulseText 2s ease-in-out infinite; }
+        .hero-anim .label-delayed { animation:pulseText 2s ease-in-out 1s infinite; }
+
+        @keyframes rocketTrail {
+            0% { stroke-dashoffset: 200; }
             100% { stroke-dashoffset: 0; }
         }
-        @keyframes pulseDot {
-            0%, 100% { r: 4; opacity: 1; }
-            50% { r: 7; opacity: 0.5; }
+        @keyframes glowCircle {
+            0%,100% { transform: scale(1); opacity:0.7; }
+            50% { transform: scale(1.1); opacity:1; }
         }
-
-        .founder-note { background: linear-gradient(145deg, #1E1E1E 0%, #0F0F0F 100%); border-left: 4px solid #D4AF37; }
-        .signature { font-family: 'Georgia', serif; font-style: italic; }
-        .contact-form input, .contact-form textarea { background: #111; border: 1px solid #333; color: #E0E0E0; padding: 0.75rem; border-radius: 0.5rem; width: 100%; }
-        .contact-form input:focus, .contact-form textarea:focus { border-color: #D4AF37; outline: none; }
-        .contact-form label { font-size: 0.85rem; color: #C0C0C0; }
-        .contact-form label a { color: #D4AF37; text-decoration: underline; }
+        .strategy-svg .breakout-line { stroke-dasharray: 200; animation: rocketTrail 3s ease-in-out infinite alternate; }
+        .strategy-svg .glow-circle { animation: glowCircle 2s ease-in-out infinite; }
     </style>
-</head>
-<body class="antialiased">
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-2{margin-right:0.5rem}.mt-0\.5{margin-top:0.125rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-auto{height:auto}.min-h-screen{min-height:100vh}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-6xl{max-width:72rem}.max-w-md{max-width:28rem}.cursor-pointer{cursor:pointer}.list-inside{list-style-position:inside}.list-decimal{list-style-type:decimal}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.gap-12{gap:3rem}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.border-t{border-top-width:1px}.border-\[var\(--card-border\)\]{border-color:var(--card-border)}.p-4{padding:1rem}.p-8{padding:2rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.pt-24{padding-top:6rem}.pt-4{padding-top:1rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.tracking-tight{letter-spacing:-0.025em}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.opacity-75{opacity:0.75}@media (min-width: 640px){.sm\:flex-row{flex-direction:row}}@media (min-width: 768px){.md\:block{display:block}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:p-12{padding:3rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}}</style></head>
+<body class="dark">
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-black/70 border-b border-gray-800">
-        <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
-            <span class="text-xl font-bold gold-accent text-glow">GoldBreakout AI</span>
-            <div class="space-x-6 text-sm font-medium text-silver hidden md:flex items-center">
-                <a href="#home" class="hover:text-white transition">Home</a>
-                <a href="#asymmetry" class="hover:text-white transition">Asymmetric Edge</a>
-                <a href="#free" class="hover:text-white transition">Free Version</a>
-                <a href="#founder" class="hover:text-white transition">Founder's Note</a>
-                <a href="#features" class="hover:text-white transition">Features</a>
-                <a href="#pricing" class="nav-unlock gold-accent hover:text-black transition">Get Unlocked</a>
-                <a href="#install" class="hover:text-white transition">Install Guide</a>
-                <a href="#faq" class="hover:text-white transition">FAQ</a>
-                <a href="#legal" class="hover:text-white transition">Legal</a>
-            </div>
-        </div>
-    </nav>
+<!-- Settings overlay -->
+<div id="settingsOverlay" class="settings-overlay show" onclick="closeSettings()" style="display: none;"></div>
 
-    <!-- Hero -->
-    <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 border-b border-gray-800 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <svg viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M100 400 L300 300 L500 350 L700 100" stroke="#D4AF37" stroke-width="2" fill="none" />
-                <circle cx="700" cy="100" r="6" fill="#D4AF37" />
-                <circle cx="300" cy="300" r="4" fill="#D4AF37" />
-                <line x1="100" y1="300" x2="700" y2="300" stroke="#D4AF37" stroke-dasharray="5 5" />
-                <text x="250" y="280" fill="#D4AF37" font-size="12" font-family="Inter">BREAKOUT LEVEL</text>
-            </svg>
+<!-- Settings gear -->
+<button class="gear-btn" onclick="toggleSettings()" style="display: none;">⚙️</button>
+
+<!-- Settings panel with Edit/Save -->
+<div id="settingsPanel" class="settings-panel open" style="display: none;">
+    <h3 class="text-lg font-semibold text-primary mb-4">Editor Controls</h3>
+    <div class="mb-6">
+        <p class="text-sm text-secondary mb-2">Theme</p>
+        <button onclick="toggleTheme()" class="btn-outline w-full" id="themeBtn">Switch to Light</button>
+    </div>
+    <div class="mb-6">
+        <p class="text-sm text-secondary mb-2">Accent</p>
+        <div class="flex flex-wrap gap-2">
+            <div class="color-swatch" style="background:#60A5FA; width:24px; height:24px; border-radius:50%; border:2px solid transparent; cursor:pointer;" onclick="setAccent('#60A5FA', this)"></div>
+            <div class="color-swatch active" style="background:#D4AF37; width:24px; height:24px; border-radius:50%; border:2px solid transparent; cursor:pointer;" onclick="setAccent('#D4AF37', this)"></div>
+            <div class="color-swatch" style="background:#10B981; width:24px; height:24px; border-radius:50%; border:2px solid transparent; cursor:pointer;" onclick="setAccent('#10B981', this)"></div>
+            <div class="color-swatch" style="background:#EF4444; width:24px; height:24px; border-radius:50%; border:2px solid transparent; cursor:pointer;" onclick="setAccent('#EF4444', this)"></div>
+            <div class="color-swatch" style="background:#8B5CF6; width:24px; height:24px; border-radius:50%; border:2px solid transparent; cursor:pointer;" onclick="setAccent('#8B5CF6', this)"></div>
+            <div class="color-swatch" style="background:#F59E0B; width:24px; height:24px; border-radius:50%; border:2px solid transparent; cursor:pointer;" onclick="setAccent('#F59E0B', this)"></div>
+            <div class="color-swatch" style="background:#EC4899; width:24px; height:24px; border-radius:50%; border:2px solid transparent; cursor:pointer;" onclick="setAccent('#EC4899', this)"></div>
         </div>
-        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 relative z-10">
-            Capturing Gold’s Volatility <br class="hidden md:block" />
-            <span class="gold-accent text-glow">with Mathematical Precision</span>
-        </h1>
-        <p class="max-w-2xl text-lg text-silver mb-10 relative z-10">
-            GoldBreakout AI is not a scalping bot. It’s a capital weapon engineered for asymmetric returns –<br />
-            risking small to capture multi‑day gold surges, <strong class="text-white">whether price explodes upward or collapses downward</strong>.<br />
-            The EA doesn't need gold to go up. It needs gold to <strong class="text-white">move</strong>. Volatility is the fuel.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 relative z-10">
-            <a href="#free" class="px-8 py-3 gold-bg text-black font-semibold rounded gold-glow hover:bg-opacity-90 transition">Try It Free</a>
-            <a href="#pricing" class="px-8 py-3 border border-gold-accent gold-accent font-semibold rounded hover:bg-gold-accent hover:text-black transition">Get Unlocked</a>
-            <a href="#asymmetry" class="px-8 py-3 border border-gray-600 rounded text-silver hover:border-gray-400 transition">The Strategy</a>
+    </div>
+    <div class="mb-6">
+        <button id="editToggleBtn" onclick="toggleEdit()" class="btn-primary w-full mb-3">Turn Edit Mode OFF</button>
+        <button id="saveBtn" onclick="saveHTML()" class="btn-outline w-full">💾 Save HTML (Download)</button>
+    </div>
+    <button onclick="closeSettings()" class="mt-8 text-sm text-secondary underline">Close</button>
+</div>
+
+<!-- Fixed top navigation (same structure, but texts are editable) -->
+<header id="topNav">
+    <div class="container">
+        <a href="#home" class="text-2xl font-bold accent">GoldBreakout AI</a>
+        <div class="nav-links">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#strategy" class="nav-link">Strategy</a>
+            <a href="#free" class="nav-link">Free Version</a>
+            <a href="#founder" class="nav-link">Founder</a>
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#backtest" class="nav-link">Backtest</a>
+            <a href="#pricing" class="nav-pill">Get Unlocked</a>
+            <a href="#install" class="nav-link">Install Guide</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+            <a href="#legal" class="nav-link">Legal</a>
         </div>
-        <div class="mt-12 max-w-md w-full relative z-10">
-            <svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="40" y1="140" x2="360" y2="140" stroke="#D4AF37" stroke-width="2" stroke-dasharray="6 6" />
-                <text x="250" y="130" fill="#D4AF37" font-size="10" font-family="Inter">RESISTANCE</text>
-                <path d="M40 160 Q 80 155, 120 145 T 200 120 T 280 90 T 350 60" stroke="#D4AF37" stroke-width="3" fill="none" stroke-linecap="round" />
-                <circle cx="350" cy="60" r="12" fill="#D4AF37" opacity="0.3" />
-                <circle cx="350" cy="60" r="6" fill="#D4AF37" />
-                <text x="360" y="55" fill="#D4AF37" font-size="12" font-family="Inter" font-weight="bold">BREAKOUT</text>
+        <button id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+    </div>
+    <div id="mobileDropdown">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#strategy" class="nav-link">Strategy</a>
+        <a href="#free" class="nav-link">Free Version</a>
+        <a href="#founder" class="nav-link">Founder</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#backtest" class="nav-link">Backtest</a>
+        <a href="#pricing" class="nav-pill">Get Unlocked</a>
+        <a href="#install" class="nav-link">Install Guide</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#legal" class="nav-link">Legal</a>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="min-h-screen pt-24">
+
+    <!-- Hero section (editable texts) -->
+    <section id="home" class="max-w-6xl mx-auto px-6 py-20 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            <span>Explosive Asymmetric Returns</span><br class="hidden md:block">
+            <span class="accent">Powered by Gold Volatility</span>
+        </h2>
+        <p class="text-secondary max-w-2xl mx-auto mb-8">
+            GoldBreakout AI is an accelerator built for traders who understand that <strong class="text-primary">life‑changing wealth requires life‑changing volatility</strong>.
+            It hunts multi‑day gold breakouts in both directions, embracing drawdowns as the price of unfettered upside. It doesn't need price to go up it needs gold to <strong class="text-white">move</strong>. Volatility is the fuel.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <a href="#free" class="btn-primary">Try It Free</a>
+            <a href="#pricing" class="btn-outline">Get Unlocked</a>
+            <a href="#strategy" class="btn-outline" style="border-color: var(--text-secondary); color: var(--text-secondary)">The Strategy</a>
+        </div>
+        <div class="hero-anim max-w-md mx-auto" style="height:260px;">
+            <svg viewBox="0 0 400 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%">
+                <line x1="30" y1="180" x2="370" y2="180" stroke="var(--card-border)" stroke-dasharray="6 6"></line>
+                <path class="line" d="M30 170 Q 80 175, 130 150 T 230 90 T 330 40 T 370 20" stroke="var(--accent)" stroke-width="3" fill="none" stroke-linecap="round"></path>
+                <circle cx="370" cy="20" r="5" fill="var(--accent)" class="pulse"></circle>
+                <text x="20" y="195" fill="var(--text-secondary)" font-size="11" font-family="Inter" class="label">$1,000</text>
+                <text x="300" y="50" fill="var(--accent)" font-size="14" font-weight="bold" font-family="Inter" class="label label-delayed">$1,000,000</text>
             </svg>
         </div>
     </section>
 
-    <!-- Asymmetric Edge -->
-    <section id="asymmetry" class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800">
-        <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">The Asymmetric Edge</h2>
+    <!-- Strategy section (editable) -->
+    <section id="strategy" class="py-24 px-6 max-w-6xl mx-auto border-t border-[var(--card-border)]">
+        <h2 class="text-3xl font-semibold mb-12 text-center accent">TL;DR – This Is Not a Savings Account</h2>
         <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6 text-silver text-lg leading-relaxed">
-                <p>
-                    <strong class="text-white">Normal people trade scared. Sophisticated people trade smart.</strong><br/>
-                    Most retail traders blow their accounts because they fixate on tiny, guaranteed profits – scalping ticks and closing out too soon. They fear loss, so they never let a trade run. The result? Death by a thousand cuts.
-                </p>
-                <p>
-                    GoldBreakout AI is built on <span class="gold-accent font-semibold">asymmetric risk</span>: risking a small, defined amount to capture an outsized, multi‑day move. Gold regularly delivers 2,000 – 5,000 point trends <strong class="text-white">in both directions</strong>. By combining a daily breakout entry, intelligent trailing stops, and partial profit taking, the EA transforms volatility from a threat into a weapon.
-                </p>
-                <p>
-                    This is your <span class="gold-accent font-semibold">capital weapon</span>. The equity floor protection, risk‑based lot sizing, and order slicing are your <strong>shield</strong>. The dynamic offset, break‑even lock, and precision trailing are your <strong>sword</strong>. When Gold moves – <strong>up or down</strong> – this EA ensures you’re on the right side and stays there until the move exhausts itself.
-                </p>
+            <div class="space-y-6 text-secondary text-lg leading-relaxed">
+                <p><strong class="text-primary">Traditional money management teaches you to protect capital first.</strong> That's great if you already have wealth to protect. But if you're starting from zero, you need a different engine—one that risks a little to capture a lot.</p>
+                <p>GoldBreakout AI is that engine. It enters on daily breakouts of XAUUSD with a deliberate asymmetric risk profile:<br><span class="accent font-semibold">Frequent breakeven/ small wins. Rare, violent wins. Rare calculated losses. The result is exponential growth.</span></p>
+                <p>You will experience drawdown. You will experience losing streaks. You will also, in the right conditions, see account growth that is impossible with traditional money management.</p>
             </div>
-            <div class="bg-gray-900 rounded-2xl p-6 card-bg border border-gray-800 flex items-center justify-center">
-                <div class="chart-container">
-                    <svg class="chart-grid" viewBox="0 0 600 300" preserveAspectRatio="none">
-                        <line x1="0" y1="50" x2="600" y2="50" />
-                        <line x1="0" y1="100" x2="600" y2="100" />
-                        <line x1="0" y1="150" x2="600" y2="150" />
-                        <line x1="0" y1="200" x2="600" y2="200" />
-                        <line x1="0" y1="250" x2="600" y2="250" />
-                        <polyline class="price-line" points="20,220 80,200 140,230 200,180 260,150 320,170 380,120 440,90 500,110 560,60" />
-                        <circle class="price-dot" cx="560" cy="60" r="4" />
-                    </svg>
-                </div>
+            <div class="flex justify-center">
+                <svg class="strategy-svg" viewBox="0 0 300 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:280px; height:260px">
+                    <line x1="40" y1="160" x2="260" y2="160" stroke="var(--text-secondary)" stroke-width="1.5" stroke-dasharray="6 6"></line>
+                    <path d="M40 180 Q 80 170, 130 165 T 200 155" stroke="var(--text-secondary)" stroke-width="1.5" fill="none"></path>
+                    <path class="breakout-line" d="M200 155 L 260 70" stroke="#10B981" stroke-width="4" stroke-linecap="round"></path>
+                    <circle cx="200" cy="155" r="5" fill="var(--accent)" class="glow-circle"></circle>
+                    <path d="M190 180 L 210 180 L 200 200 Z" fill="#EF4444" opacity="0.6" class="glow-circle"></path>
+                    <text x="185" y="215" fill="#EF4444" font-size="9" font-family="Inter" text-anchor="end">-200 pts</text>
+                    <text x="270" y="60" fill="#10B981" font-size="11" font-weight="bold" font-family="Inter">+5000 pts</text>
+                    <polygon points="260,70 250,85 265,80 260,70" fill="#10B981" class="glow-circle"></polygon>
+                </svg>
             </div>
         </div>
     </section>
 
-    <!-- Free Version (Backtest Only) -->
-    <section id="free" class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800 text-center">
-        <h2 class="text-3xl font-semibold mb-8 gold-accent text-glow">Free Backtest‑Only Version</h2>
-        <p class="text-silver max-w-2xl mx-auto mb-10 text-lg">
-            The core engine is completely free and <strong class="text-white">fully functional inside the MetaTrader 5 Strategy Tester</strong>. You can run extensive backtests, verify the logic, and see the equity curve – but it <strong>will not trade live</strong>. This restriction is hard‑coded so you can test with confidence and no pressure.
-        </p>
-        <div class="card-bg border border-gray-800 rounded-2xl p-8 max-w-2xl mx-auto text-left">
-            <h3 class="text-2xl font-semibold text-white mb-4 gold-accent">What the Free Version Includes</h3>
-            <ul class="space-y-3 text-silver">
-                <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Full breakout logic & trade management</li>
-                <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Can be run in MT5 Strategy Tester (backtesting)</li>
-                <li class="flex items-start"><span class="gold-accent mr-2">✓</span> All parameters locked at optimal defaults</li>
-                <li class="flex items-start"><span class="gold-accent mr-2">✓</span> No registration, no expiry</li>
+    <!-- Free Version (editable) -->
+    <section id="free" class="py-24 px-6 max-w-6xl mx-auto border-t border-[var(--card-border)] text-center">
+        <h2 class="text-3xl font-semibold mb-8 accent">Free Backtest‑Only Version</h2>
+        <p class="text-secondary max-w-2xl mx-auto mb-10 text-lg">The core engine is completely free and fully functional inside the MT5 Strategy Tester. No live trading. No registration. No expiry.</p>
+        <div class="card max-w-2xl mx-auto">
+            <h3 class="text-xl font-semibold text-primary mb-4 accent">What's Included</h3>
+            <ul class="space-y-3 text-secondary">
+                <li>✓ Full breakout logic &amp; trade management</li>
+                <li>✓ Backtesting only – locked to Strategy Tester</li>
+                <li>✓ Default parameters that we use ourselves</li>
             </ul>
-            <!-- Download button in Free Version section -->
-            <div class="mt-8 text-center">
-                <a href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="inline-block px-6 py-3 gold-bg text-black font-semibold rounded gold-glow hover:bg-opacity-90 transition" download>
-                    Download Free EA
-                </a>
-                <p class="text-xs text-silver mt-2">Click to download the <code class="bg-gray-800 px-1 rounded">GoldBreakoutAI_Free.ex5</code> file.</p>
-            </div>
-            <p class="mt-6 text-sm text-silver">
-                The free EA will refuse to trade on a live chart. You must buy the Lifetime License to unlock live trading and parameter customization.
-            </p>
-        </div>
-    </section>
-
-    <!-- AI Adaptation -->
-    <section class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800">
-        <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">Beyond Asymmetry: AI‑Powered Adaptation</h2>
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-4 text-silver text-lg leading-relaxed">
-                <p>
-                    The default strategy thrives on <strong>asymmetric breakouts</strong>. It’s designed to wait for the big runner – whether that’s a rally or a crash. But what about the 80% of time when markets chop sideways? That’s where <span class="gold-accent font-semibold">AI agents</span> unlock the next level.
-                </p>
-                <p>
-                    With the Lifetime License, you gain access to the <strong>Global Variable interface</strong>. This lets you (or an AI agent you control) dynamically adjust core parameters in real time. An AI agent can analyze market conditions, detect chop, and shift the EA into a low‑energy mode that scalps small ranges instead of waiting for the breakout.
-                </p>
-                <p class="text-sm opacity-80">
-                    <strong>Note:</strong> AI agents and their setup are entirely your responsibility. The EA provides the pipes – you (or your AI) turn the knobs.
-                </p>
-            </div>
-            <div class="card-bg border border-gold-accent rounded-2xl p-8">
-                <h3 class="text-xl font-semibold text-white mb-4 gold-accent">Lifetime License Unlocks</h3>
-                <ul class="space-y-3 text-silver">
-                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Live trading & full parameter customization</li>
-                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Global Variable bridge for external AI systems</li>
-                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Switch between "breakout" and "chop‑adaptive" modes on the fly</li>
-                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Unlimited accounts, lifetime updates</li>
-                </ul>
+            <div class="mt-8">
+                <a href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="btn-primary" download="">Download Free EA</a>
+                <p class="text-xs text-secondary mt-2"><code>GoldBreakoutAI_Free.ex5</code></p>
             </div>
         </div>
     </section>
 
-    <!-- Founder's Note -->
-    <section id="founder" class="py-24 px-6 max-w-4xl mx-auto border-t border-gray-800">
-        <div class="founder-note rounded-2xl p-8 md:p-12 card-bg border border-gray-800">
-            <h2 class="text-3xl font-semibold mb-8 gold-accent text-glow text-center">A Personal Note from the Founder</h2>
-            <div class="space-y-6 text-silver leading-relaxed">
-                <p>
-                    I’m from a country where jobs don’t pay well. The system incentivizes brilliant, hard‑working people to leave for higher wages abroad. I refused. I believe self‑sovereignty is the only true freedom, and that financial markets – when approached with mathematical rigor and precise execution – can be the escape.
-                </p>
-                <p>
-                    GoldBreakout AI was born out of necessity, not entertainment. I needed a capital weapon that could generate asymmetric returns: risking a little to capture a lot. I’m not a bank, I can’t afford to win 51% of the time with tiny gains. I need the big runners – the 2,000, 3,000, 5,000 point surges that happen a few times a year, <strong class="text-white">up or down</strong>. This EA is built to survive the chop and feast on the volatility.
-                </p>
-                <p>
-                    I’m giving away the core engine for <strong class="text-white">free</strong> – but only for backtesting in the Strategy Tester. You can verify the results with zero risk. If you decide you want to unlock live trading, custom inputs, and AI integration, you pay a single <span class="gold-accent font-semibold">one‑time $1,500 USDC</span>. No subscriptions, no hidden fees, no royalty on your profits.
-                </p>
-                <p>
-                    All payments are in USDC. I believe in crypto as a tool for self‑sovereignty. You hold your keys, you control your money. That’s the way it should be.
-                </p>
-                <p class="text-white font-medium">
-                    This isn’t a get‑rich‑quick scheme. It’s a precision instrument. If you’re ready to treat trading like a mathematical business, I welcome you.
-                </p>
-                <div class="pt-4 border-t border-gray-700 text-right">
-                    <span class="signature gold-accent text-2xl">— Your Founder</span>
+    <!-- Founder's Note (editable) -->
+    <section id="founder" class="py-24 px-6 max-w-4xl mx-auto border-t border-[var(--card-border)]">
+        <div class="founder-note rounded-2xl p-8 md:p-12 card">
+            <h2 class="text-3xl font-semibold mb-8 accent text-center">A Personal Note from the Founder</h2>
+            <div class="space-y-6 text-secondary leading-relaxed">
+                <p>My nickname is Loki, I'm from a country where jobs don't pay well. The system pushes bright, hard‑working people to emigrate. I stayed. I believe financial markets—approached with mathematical rigor—can be a solution for this.</p>
+                <p>This EA was built out of necessity. I needed a capital weapon that could generate asymmetric returns: risking small to capture large. I can't afford to win 51% of the time by tiny percentages. I need the big runners – the 5,000, 10,000, 20,000, ‑point surges, <strong class="text-primary">up or down</strong>.</p>
+                <p>I sell this EA to accelerate my own capital growth and to fund my next AI creation. When you buy it, you're not just buying a tool—you're betting on a creator who is still climbing, just like you. A website without marketing is just a dead zone so I will be marketing myself and my creations on Youtube and Social Media. Stay tuned.</p>
+                <div class="pt-4 border-t border-[var(--card-border)] text-right">
+                    <span class="signature accent text-2xl">— Loki</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Grid -->
-    <section id="features" class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800">
-        <h2 class="text-3xl font-semibold mb-16 text-center gold-accent text-glow">Core Technology</h2>
+    <!-- Features Grid (editable) -->
+    <section id="features" class="py-24 px-6 max-w-6xl mx-auto border-t border-[var(--card-border)]">
+        <h2 class="text-3xl font-semibold mb-16 text-center accent">Core Technology</h2>
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent gold-glow transition-all duration-300">
-                <div class="gold-accent text-2xl mb-4">⚡</div>
-                <h3 class="text-xl font-semibold mb-3 text-white">Dynamic Entry</h3>
-                <p class="text-silver text-sm">Smart offset from yesterday’s high/low filters noise, ensuring only genuine breakouts are traded.</p>
+            <div class="card">
+                <div class="accent text-2xl mb-4">⚡</div>
+                <h3 class="text-xl font-semibold mb-3 text-primary">Breakout Entry</h3>
+                <p class="text-secondary text-sm">Simple and effective proprietary method for front‑running liquidity.</p>
             </div>
-            <div class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent gold-glow transition-all duration-300">
-                <div class="gold-accent text-2xl mb-4">📊</div>
-                <h3 class="text-xl font-semibold mb-3 text-white">Partial Take Profit</h3>
-                <p class="text-silver text-sm">Secures profits early, reducing risk while keeping a runner to capture the full trend.</p>
+            <div class="card">
+                <div class="accent text-2xl mb-4">📊</div>
+                <h3 class="text-xl font-semibold mb-3 text-primary">Partial Take Profit</h3>
+                <p class="text-secondary text-sm">Secures profits early, keeps a runner.</p>
             </div>
-            <div class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent gold-glow transition-all duration-300">
-                <div class="gold-accent text-2xl mb-4">🛡️</div>
-                <h3 class="text-xl font-semibold mb-3 text-white">Breakeven + Lock</h3>
-                <p class="text-silver text-sm">Once a profit threshold is reached, SL moves to break‑even, then to a locked profit – guarantee a winner.</p>
+            <div class="card">
+                <div class="accent text-2xl mb-4">🛡️</div>
+                <h3 class="text-xl font-semibold mb-3 text-primary">Breakeven + Lock</h3>
+                <p class="text-secondary text-sm">SL moves to guaranteed profit quickly.</p>
             </div>
-            <div class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent gold-glow transition-all duration-300">
-                <div class="gold-accent text-2xl mb-4">🎯</div>
-                <h3 class="text-xl font-semibold mb-3 text-white">Precision Trailing</h3>
-                <p class="text-silver text-sm">Trails stop loss with a custom buffer, avoiding false exits during volatile spikes.</p>
+            <div class="card">
+                <div class="accent text-2xl mb-4">🎯</div>
+                <h3 class="text-xl font-semibold mb-3 text-primary">Precision Trailing</h3>
+                <p class="text-secondary text-sm">Method of capturing opportunity with mathematical precision. Impossible for any human to execute manually. Works 24/5.</p>
             </div>
-            <div class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent gold-glow transition-all duration-300">
-                <div class="gold-accent text-2xl mb-4">🔢</div>
-                <h3 class="text-xl font-semibold mb-3 text-white">Risk‑Based Lot Sizing</h3>
-                <p class="text-silver text-sm">Automatically adjusts your position size to a percentage of your balance – never over‑leverage.</p>
+            <div class="card">
+                <div class="accent text-2xl mb-4">🔢</div>
+                <h3 class="text-xl font-semibold mb-3 text-primary">Risk‑Based Lot Sizing</h3>
+                <p class="text-secondary text-sm">Auto‑sizes positions to % of balance. Exponential growth key.</p>
             </div>
-            <div class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent gold-glow transition-all duration-300">
-                <div class="gold-accent text-2xl mb-4">🧠</div>
-                <h3 class="text-xl font-semibold mb-3 text-white">AI‑Ready Adaptability</h3>
-                <p class="text-silver text-sm">Key parameters are exposed via Global Variables, enabling dynamic regime shifts for trending or ranging markets.</p>
+            <div class="card">
+                <div class="accent text-2xl mb-4">🧠</div>
+                <h3 class="text-xl font-semibold mb-3 text-primary">AI‑Ready Adaptability</h3>
+                <p class="text-secondary text-sm">Global Variables allow external control.</p>
             </div>
         </div>
     </section>
 
-    <!-- Safety First -->
-    <section class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800">
-        <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">Safety Is the Priority</h2>
+    <!-- Risk Managed (editable) -->
+    <section class="py-24 px-6 max-w-6xl mx-auto border-t border-[var(--card-border)]">
+        <h2 class="text-3xl font-semibold mb-12 text-center accent">Risk Managed, Not Eliminated</h2>
         <div class="grid md:grid-cols-2 gap-12">
-            <div class="bg-gray-900 rounded-2xl p-8 card-bg border border-gray-800 hover:border-gold-accent transition">
-                <h3 class="text-2xl font-semibold text-white mb-4">Equity Floor Protection</h3>
-                <p class="text-silver leading-relaxed">Define a starting balance and max drawdown %. If equity falls below the floor, the EA closes all positions and stops trading – a non‑negotiable safety clamp.</p>
-            </div>
-            <div class="bg-gray-900 rounded-2xl p-8 card-bg border border-gray-800 hover:border-gold-accent transition">
-                <h3 class="text-2xl font-semibold text-white mb-4">Order Slicing</h3>
-                <p class="text-silver leading-relaxed">Large lots are split into smaller tickets to stay under broker limits and ensure smooth execution – fully automatic.</p>
-            </div>
+            <div class="card"><h3 class="text-2xl font-semibold text-primary mb-4">Equity Floor</h3><p class="text-secondary">Hard stop‑loss for your entire account. Protects against catastrophic drawdowns.</p></div>
+            <div class="card"><h3 class="text-2xl font-semibold text-primary mb-4">Order Slicing</h3><p class="text-secondary">Large positions split automatically for smooth execution.</p></div>
         </div>
     </section>
 
-    <!-- Performance (Animated Chart) -->
-    <section class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800 text-center">
-        <h2 class="text-3xl font-semibold mb-6 gold-accent text-glow">Live Strategy Simulation</h2>
-        <p class="text-silver mb-10 max-w-2xl mx-auto">
-            Watch the asymmetric engine in motion. This chart illustrates how the EA captures gold's trending bursts.
-        </p>
-        <div class="chart-container mx-auto" style="max-width: 700px;">
-            <svg class="chart-grid" viewBox="0 0 700 300" preserveAspectRatio="none">
-                <line x1="0" y1="50" x2="700" y2="50" />
-                <line x1="0" y1="100" x2="700" y2="100" />
-                <line x1="0" y1="150" x2="700" y2="150" />
-                <line x1="0" y1="200" x2="700" y2="200" />
-                <line x1="0" y1="250" x2="700" y2="250" />
-                <polyline class="price-line" points="30,230 90,210 150,240 210,190 270,160 330,180 390,130 450,100 510,120 570,80 630,50 670,40" />
-                <circle class="price-dot" cx="670" cy="40" r="4" />
-            </svg>
+    <!-- Backtest Screenshots (captions editable) -->
+    <section id="backtest" class="py-24 px-6 max-w-6xl mx-auto border-t border-[var(--card-border)] text-center">
+        <h2 class="text-3xl font-semibold mb-6 accent">Real Backtest Results</h2>
+        <p class="text-secondary mb-12 max-w-2xl mx-auto">Default parameters on XAUUSD. Notice the steep climbs and visible drawdowns – that's the asymmetry.</p>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="card p-4"><a href="https://github.com/loktari/goldbreakout/blob/main/backtest1.png?raw=true" target="_blank"><img src="https://github.com/loktari/goldbreakout/blob/main/backtest1.png?raw=true" alt="Backtest 1" class="w-full h-auto rounded" loading="lazy"></a><p class="text-xs text-secondary mt-3">Backtest results</p></div>
+            <div class="card p-4"><a href="https://github.com/loktari/goldbreakout/blob/main/backtest2.png?raw=true" target="_blank"><img src="https://github.com/loktari/goldbreakout/blob/main/backtest2.png?raw=true" alt="Backtest 2" class="w-full h-auto rounded" loading="lazy"></a><p class="text-xs text-secondary mt-3">Balance/Equity curve – multi‑year run.</p></div>
         </div>
-        <p class="text-xs text-silver mt-4 italic">Real backtest results are available on request. The chart is a schematic of a typical trend‑capture sequence.</p>
     </section>
 
-    <!-- Pricing with Email Form -->
-    <section id="pricing" class="py-24 px-6 max-w-6xl mx-auto border-t border-gray-800 text-center">
-        <h2 class="text-3xl font-semibold mb-6 gold-accent text-glow">Get the Unlocked Weapon</h2>
-        <p class="text-silver mb-12 max-w-2xl mx-auto">
-            You’ve tested the free version in the Strategy Tester. Now take full control for live markets.
-        </p>
+    <!-- Pricing (editable) -->
+    <section id="pricing" class="py-24 px-6 max-w-6xl mx-auto border-t border-[var(--card-border)] text-center">
+        <h2 class="text-3xl font-semibold mb-6 accent">Get the Unlocked Accelerator</h2>
         <div class="max-w-md mx-auto">
-            <div class="card-bg border border-gold-accent rounded-2xl p-8 flex flex-col items-center">
-                <h3 class="text-2xl font-semibold text-white mb-4">Lifetime License</h3>
-                <p class="text-4xl font-bold gold-accent mb-6">$1,500</p>
-                <ul class="text-silver space-y-3 mb-8 w-full">
-                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Live trading & unlimited backtesting</li>
-                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Full input customization</li>
-                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> AI integration via Global Variables</li>
-                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Manual chop‑adaptation capability</li>
-                    <li class="flex items-start"><span class="gold-accent mr-2">✓</span> Lifetime updates & priority support</li>
+            <div class="card" style="border-color: var(--accent);">
+                <h3 class="text-2xl font-semibold text-primary mb-4">Lifetime License</h3>
+                <p class="text-4xl font-bold accent mb-6">$1,500</p>
+                <ul class="text-secondary space-y-3 mb-8">
+                    <li>✓ Live trading &amp; full input control</li>
+                    <li>✓ AI integration via Global Variables</li>
+                    <li>✓ Lifetime updates &amp; support</li>
                 </ul>
-
-                <button id="buyNowBtn" class="w-full py-3 gold-bg text-black font-semibold rounded text-center gold-glow hover:bg-opacity-90 transition">
-                    Buy Now – $1,500 USDC
-                </button>
-                <p class="text-xs text-silver mt-3">One‑time payment. No refunds. I'll contact you personally.</p>
-
-                <div id="contactForm" class="hidden mt-6 w-full contact-form text-left">
+                <button id="buyNowBtn" class="btn-primary w-full">Buy Now – $1,500 USDC</button>
+                <div id="contactForm" class="mt-6 w-full text-left hidden">
                     <form action="https://formspree.io/f/mgodwyda" method="POST">
-                        <input type="email" name="_replyto" placeholder="Your email address" required class="mb-3" />
-                        <textarea name="message" rows="3" placeholder="Your message or questions..." required class="mb-3"></textarea>
-                        <!-- Legal consent checkbox -->
-                        <label class="flex items-start mb-3">
-                            <input type="checkbox" name="legal_consent" required class="mr-2 mt-0.5" />
-                            <span>I have read and agree to the <a href="#legal" target="_blank">Terms & Conditions, Privacy Policy, and Disclaimer</a>. I acknowledge that by completing the purchase, I will lose my 14‑day right of withdrawal under EU law once the digital product is delivered.</span>
+                        <input type="email" name="_replyto" placeholder="Your email address" required="" class="input-field mb-3">
+                        <textarea name="message" rows="3" placeholder="Your message or questions..." required="" class="input-field mb-3"></textarea>
+                        <label class="flex items-start mb-3 text-sm text-secondary">
+                            <input type="checkbox" name="legal_consent" required="" class="mr-2 mt-0.5">
+                            <span>I have read and agree to the <a href="#legal" class="accent underline">Terms &amp; Conditions, Privacy Policy, and Disclaimer</a>. I acknowledge that by completing the purchase, I will lose my 14‑day right of withdrawal under EU law once the digital product is delivered.</span>
                         </label>
-                        <input type="hidden" name="_subject" value="GoldBreakout AI Purchase Inquiry" />
-                        <button type="submit" class="w-full py-2 gold-bg text-black font-semibold rounded hover:bg-opacity-90 transition">Send Inquiry</button>
+                        <input type="hidden" name="_subject" value="GoldBreakout AI Purchase Inquiry">
+                        <button type="submit" class="btn-primary w-full">Send Inquiry</button>
                     </form>
-                    <p class="text-xs text-silver mt-2">I'll reply to you within 24h with payment details and delivery.</p>
                 </div>
             </div>
-            <p class="mt-6 text-sm text-silver">
-                Still testing? <a href="#free" class="gold-accent hover:underline">Keep using the free backtester</a> as long as you like.
-            </p>
         </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="py-24 px-6 max-w-3xl mx-auto border-t border-gray-800">
-        <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">Frequently Asked Questions</h2>
+    <!-- FAQ (editable) -->
+    <section id="faq" class="py-24 px-6 max-w-3xl mx-auto border-t border-[var(--card-border)]">
+        <h2 class="text-3xl font-semibold mb-12 text-center accent">Frequently Asked Questions</h2>
         <div class="space-y-6">
-            <details class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent transition">
-                <summary class="text-white font-medium cursor-pointer">Why is the free version backtest‑only?</summary>
-                <p class="mt-3 text-silver text-sm">So you can thoroughly evaluate the strategy with zero risk. The free EA is identical to the paid one in logic, but hard‑coded to refuse live orders. You can test every scenario in the MT5 Strategy Tester before deciding to upgrade.</p>
+            <details class="card">
+                <summary class="text-primary font-medium cursor-pointer">Why is the free version backtest‑only?</summary>
+                <p class="mt-3 text-secondary text-sm">So you can thoroughly evaluate the strategy with zero risk. The free EA is identical to the paid one in logic, but hard‑coded to refuse live orders. You can test every scenario in the MT5 Strategy Tester before deciding to upgrade.</p>
             </details>
-            <details class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent transition">
-                <summary class="text-white font-medium cursor-pointer">Can I run the free EA on a demo account?</summary>
-                <p class="mt-3 text-silver text-sm">No – the free version will not trade on any live chart, demo or real. It is designed exclusively for the Strategy Tester.</p>
+            <details class="card">
+                <summary class="text-primary font-medium cursor-pointer">Can I run the free EA on a demo account?</summary>
+                <p class="mt-3 text-secondary text-sm">No – the free version will not trade on any live chart, demo or real. It is designed exclusively for the Strategy Tester.</p>
             </details>
-            <details class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent transition">
-                <summary class="text-white font-medium cursor-pointer">What’s the difference between Free and Lifetime?</summary>
-                <p class="mt-3 text-silver text-sm">The free version has all trading features but is restricted to backtesting and parameters are locked. Lifetime unlocks live trading, full input customization, and the Global Variable interface for AI integration.</p>
+            <details class="card">
+                <summary class="text-primary font-medium cursor-pointer">What's the difference between Free and Lifetime?</summary>
+                <p class="mt-3 text-secondary text-sm">The free version has all trading features but is restricted to backtesting and parameters are locked. Lifetime unlocks live trading, full input customization, and the Global Variable interface for AI integration.</p>
             </details>
-            <details class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent transition">
-                <summary class="text-white font-medium cursor-pointer">Can I use my own AI agent?</summary>
-                <p class="mt-3 text-silver text-sm">Yes – with Lifetime, the EA exposes a real‑time parameter bridge via Global Variables. You (or your AI) can push new values for trailing stop, breakeven, offset, etc. Full documentation is provided after purchase.</p>
+            <details class="card">
+                <summary class="text-primary font-medium cursor-pointer">Can I use my own AI agent?</summary>
+                <p class="mt-3 text-secondary text-sm">Yes – with Lifetime, the EA exposes a real‑time parameter bridge via Global Variables. You (or your AI) can push new values for trailing stop, breakeven, offset, etc. Full documentation is provided after purchase.</p>
             </details>
-            <details class="card-bg border border-gray-800 rounded-xl p-6 hover:border-gold-accent transition">
-                <summary class="text-white font-medium cursor-pointer">What is your refund policy?</summary>
-                <p class="mt-3 text-silver text-sm">All sales are final. Please test the free version thoroughly in the Strategy Tester before upgrading.</p>
+            <details class="card">
+                <summary class="text-primary font-medium cursor-pointer">What is your refund policy?</summary>
+                <p class="mt-3 text-secondary text-sm">All sales are final. Please test the free version thoroughly in the Strategy Tester before upgrading.</p>
             </details>
         </div>
     </section>
 
-    <!-- Legal & Compliance Section -->
-    <section id="legal" class="py-24 px-6 max-w-4xl mx-auto border-t border-gray-800">
-        <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">Legal & Compliance</h2>
-        <div class="card-bg border border-gray-800 rounded-2xl p-8 space-y-8 text-silver text-sm">
-            <details class="group">
-                <summary class="text-lg font-semibold text-white cursor-pointer">Disclaimer</summary>
+    <!-- Legal (editable) -->
+    <section id="legal" class="py-24 px-6 max-w-4xl mx-auto border-t border-[var(--card-border)]">
+        <h2 class="text-3xl font-semibold mb-12 text-center accent">Legal &amp; Compliance</h2>
+        <div class="card space-y-8 text-secondary text-sm">
+            <details>
+                <summary class="text-lg font-semibold text-primary cursor-pointer">Disclaimer</summary>
                 <div class="mt-4 space-y-3">
-                    <p><strong>GoldBreakout AI is a software tool, not an investment advisor.</strong></p>
-                    <p>The content on this website is for informational purposes only and does not constitute financial, investment, tax, or legal advice. No representation is being made that any account will or is likely to achieve profits or losses similar to those discussed or shown in backtests. <strong>Past performance is not indicative of future results.</strong></p>
+                    <p><strong class="text-primary">GoldBreakout AI is a software tool, not an investment advisor.</strong></p>
+                    <p>The content on this website is for informational purposes only and does not constitute financial, investment, tax, or legal advice. No representation is being made that any account will or is likely to achieve profits or losses similar to those discussed or shown in backtests. <strong class="text-primary">Past performance is not indicative of future results.</strong></p>
                     <p>Trading foreign exchange on margin involves a high degree of risk and may not be suitable for all investors. You could lose all of your capital. You should consider your financial situation, risk tolerance, and experience before using any automated trading software.</p>
                     <p>GoldBreakout AI is provided “as‑is” without any warranty of any kind, either express or implied, including but not limited to the implied warranties of merchantability or fitness for a particular purpose. The developer assumes no responsibility or liability for any trading losses, data inaccuracies, or any other damages arising from the use of this software. You assume full responsibility for all trading decisions and outcomes.</p>
                     <p>The “Free Backtest‑Only Version” is strictly limited to the Strategy Tester and will not execute live trades.</p>
                 </div>
             </details>
-
-
-            <details class="group">
-                <summary class="text-lg font-semibold text-white cursor-pointer">Privacy Policy</summary>
+            <details>
+                <summary class="text-lg font-semibold text-primary cursor-pointer">Privacy Policy</summary>
                 <div class="mt-4 space-y-3">
                     <p>GoldBreakout AI (“we,” “us,” “our”) is committed to protecting your privacy. This Privacy Policy explains how we handle the personal information you provide through our website.</p>
-                    <p><strong>Data Collection:</strong> When you submit the contact form on our “Buy Now” page, we collect your email address and any message you choose to send. This data is transmitted via <a href="https://formspree.io" class="gold-accent hover:underline" target="_blank">Formspree</a> (a third‑party service) and forwarded to us.</p>
+                    <p><strong>Data Collection:</strong> When you submit the contact form on our “Buy Now” page, we collect your email address and any message you choose to send. This data is transmitted via <a href="https://formspree.io" class="accent underline" target="_blank">Formspree</a> (a third‑party service) and forwarded to us.</p>
                     <p><strong>Purpose:</strong> We use your email address solely to respond to your inquiry, provide payment instructions, and deliver the purchased software. We do not use it for marketing or promotional communications without your explicit consent.</p>
-                    <p><strong>Storage and Processing:</strong> Your data is hosted on Formspree’s servers in the United States. Formspree’s privacy practices can be found <a href="https://formspree.io/legal/privacy-policy/" class="gold-accent hover:underline" target="_blank">here</a>.</p>
-                    <p><strong>Your Rights (GDPR):</strong> If you are a resident of the European Union, you have the right to access, rectify, or erase your personal data. To exercise these rights, please contact us at <a href="mailto:lordkahmah@gmail.com" class="gold-accent hover:underline">lordkahmah@gmail.com</a> or simply reply to any communication we send you. We will process your request within 30 days.</p>
+                    <p><strong>Storage and Processing:</strong> Your data is hosted on Formspree’s servers in the United States. Formspree’s privacy practices can be found <a href="https://formspree.io/legal/privacy-policy/" class="accent underline" target="_blank">here</a>.</p>
+                    <p><strong>Your Rights (GDPR):</strong> If you are a resident of the European Union, you have the right to access, rectify, or erase your personal data. To exercise these rights, please contact us at <a href="mailto:lordkahmah@gmail.com" class="accent underline">lordkahmah@gmail.com</a> or simply reply to any communication we send you. We will process your request within 30 days.</p>
                     <p><strong>Consent:</strong> By submitting the contact form and checking the consent box, you agree to the collection and processing of your data as described in this policy.</p>
                     <p>We do not sell, share, or rent your personal information to anyone else.</p>
                 </div>
             </details>
-
-            <details class="group">
-                <summary class="text-lg font-semibold text-white cursor-pointer">Terms and Conditions</summary>
+            <details>
+                <summary class="text-lg font-semibold text-primary cursor-pointer">Terms and Conditions</summary>
                 <div class="mt-4 space-y-3">
                     <p>By downloading, purchasing, or using GoldBreakout AI (the “Software”), you agree to be bound by these Terms and Conditions. If you do not agree, do not use the Software.</p>
                     <p><strong>License:</strong> Upon purchase, you are granted a non‑exclusive, non‑transferable, lifetime license to use the Software on one personal trading account (or unlimited accounts, depending on the product you purchased). You may not sublicense, resell, lease, or redistribute the Software without prior written permission.</p>
                     <p><strong>Intellectual Property:</strong> All code, documentation, algorithms, and associated materials are the exclusive property of GoldBreakout AI. You may not decompile, reverse‑engineer, or attempt to extract the source code from the compiled executable files.</p>
                     <p><strong>Refund Policy:</strong> All sales are final. We do not offer refunds. Please use the free backtest‑only version to thoroughly evaluate the Software before purchase.</p>
-                    <p><strong>Withdrawal Right (EU consumers):</strong> Under Portuguese and EU consumer law, you have a right to withdraw from a distance contract within 14 days. However, because the Software consists of digital content that is delivered immediately after purchase, you will lose that right once the files are made available to you. By checking the consent box on the order form, you explicitly acknowledge and agree to the immediate delivery of the digital content and the consequent loss of your withdrawal right.</p>
+                    <p><strong>Withdrawal Right (EU consumers):</strong> Under EU consumer law, you have a right to withdraw from a distance contract within 14 days. However, because the Software consists of digital content that is delivered immediately after purchase, you will lose that right once the files are made available to you. By checking the consent box on the order form, you explicitly acknowledge and agree to the immediate delivery of the digital content and the consequent loss of your withdrawal right.</p>
                     <p><strong>Limitation of Liability:</strong> In no event will GoldBreakout AI or its developer be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in connection with the use or performance of the Software, including but not limited to trading losses, loss of profit, or data corruption. This limitation applies even if we have been advised of the possibility of such damages.</p>
-                    <p><strong>Governing Law:</strong> These Terms shall be governed by and construed in accordance with the laws of Portugal, without regard to its conflict of law provisions. Any dispute arising out of or relating to these Terms shall be subject to the exclusive jurisdiction of the Portuguese courts.</p>
+                    <p><strong>Governing Law:</strong> These Terms shall be governed by and construed in accordance with the laws of the European Union. Any dispute arising out of or relating to these Terms shall be subject to the exclusive jurisdiction of the courts of the user’s domicile within the European Union.</p>
                 </div>
             </details>
         </div>
     </section>
 
-    <!-- Installation Guide with Download Link -->
-    <section id="install" class="py-24 px-6 max-w-3xl mx-auto border-t border-gray-800">
-        <h2 class="text-3xl font-semibold mb-12 text-center gold-accent text-glow">Installation Guide</h2>
-        <div class="card-bg border border-gray-800 rounded-2xl p-8 text-silver space-y-6">
+    <!-- Installation (editable) -->
+    <section id="install" class="py-24 px-6 max-w-3xl mx-auto border-t border-[var(--card-border)]">
+        <h2 class="text-3xl font-semibold mb-12 text-center accent">Install Guide</h2>
+        <div class="card space-y-6 text-secondary text-sm">
             <div>
-                <h3 class="text-xl font-semibold text-white mb-3">For the Free Backtest Version</h3>
-                <ol class="list-decimal list-inside text-sm space-y-2">
-                    <li><a href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="gold-accent hover:underline" download>Click here to download the free EA</a> (<code class="bg-gray-800 px-1 rounded">GoldBreakoutAI_Free.ex5</code>).</li>
-                    <li>Open MetaTrader 5. Go to <strong>File → Open Data Folder</strong>.</li>
-                    <li>Navigate to <strong>MQL5 → Experts</strong> and paste the file there.</li>
-                    <li>Restart MT5 or right‑click the Navigator panel and select <strong>Refresh</strong>.</li>
-                    <li>Open the <strong>Strategy Tester</strong> (View → Strategy Tester).</li>
-                    <li>Select <strong>GoldBreakoutAI_Free</strong> from the Expert list, choose <strong>XAUUSD</strong> and your preferred testing period, then run the test.</li>
+                <h3 class="text-xl font-semibold text-primary mb-3">Free Backtest EA</h3>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li><a href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="accent underline" download="">Download free EA</a></li>
+                    <li>Move to MT5/Experts folder</li>
+                    <li>Restart MT5, run in Strategy Tester on XAUUSD.</li>
                 </ol>
                 <p class="mt-3 text-sm">Note: The free EA will <strong>not</strong> work on a live chart – it's exclusively for backtesting.</p>
             </div>
             <div>
-                <h3 class="text-xl font-semibold text-white mb-3">For the Lifetime License (after purchase)</h3>
-                <p class="text-sm">After your payment is confirmed, I'll send you the unlocked EA file (<code>GoldBreakoutAI_Lifetime.ex5</code>) along with the full documentation package. Install it the same way as above, then drag it onto any <strong>XAUUSD</strong> live/demo chart, enable Algo Trading, and you’re ready to go.</p>
-                <p class="text-sm mt-2">The documentation package contains the complete input parameter reference, Global Variable names, and AI integration guide.</p>
+                <h3 class="text-xl font-semibold text-primary mb-3">After Purchase</h3>
+                <p>You'll receive the unlocked EA (<code>GoldBreakoutAI_Lifetime.ex5</code>) plus full documentation. Drag onto XAUUSD chart, enable Algo Trading.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-gray-800 text-center text-silver text-sm">
+    <footer class="py-12 px-6 border-t border-[var(--card-border)] text-center text-sm" style="background: var(--footer-bg); color: var(--text-secondary);">
         <p class="mb-2">© 2025 GoldBreakout AI. All rights reserved.</p>
-        <p class="max-w-2xl mx-auto opacity-75">
-            Trading foreign exchange on margin carries a high level of risk and may not be suitable for all investors. Past performance is not indicative of future results.
-        </p>
-        <p class="mt-2">
-            <a href="#legal" class="gold-accent hover:underline">Legal & Compliance</a>
-        </p>
+        <p class="max-w-2xl mx-auto opacity-75">Risk warning: Trading forex on margin carries a high level of risk.</p>
+        <p class="mt-2"><a href="#legal" class="accent underline">Legal &amp; Compliance</a></p>
     </footer>
+</main>
 
-    <script>
-        document.getElementById('buyNowBtn').addEventListener('click', function() {
-            var form = document.getElementById('contactForm');
-            if (form.classList.contains('hidden')) {
-                form.classList.remove('hidden');
-                this.textContent = 'Close Form';
-            } else {
-                form.classList.add('hidden');
-                this.textContent = 'Buy Now – $1,500 USDC';
-            }
-        });
+<script>
+    let editMode = false;
+    function toggleEdit() {
+        editMode = !editMode;
+        const btn = document.getElementById('editToggleBtn');
+        const elements = document.querySelectorAll('[contenteditable]');
+        if (editMode) {
+            elements.forEach(el => el.setAttribute('contenteditable', 'true'));
+            btn.textContent = 'Turn Edit Mode OFF';
+        } else {
+            elements.forEach(el => el.setAttribute('contenteditable', 'false'));
+            btn.textContent = 'Turn Edit Mode ON';
+        }
+    }
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
-            });
+   function saveHTML() {
+    // 1. Turn off edit mode (remove contenteditable attribute completely)
+    const editElements = document.querySelectorAll('[contenteditable]');
+    editElements.forEach(el => {
+        el.setAttribute('contenteditable', 'false');
+        el.removeAttribute('contenteditable');   // clean HTML
+    });
+
+    // 2. Hide editor‑only UI (gear and settings panel)
+    const gearBtn = document.querySelector('.gear-btn');
+    const settingsPanel = document.getElementById('settingsPanel');
+    const overlay = document.getElementById('settingsOverlay');
+    if (gearBtn) gearBtn.style.display = 'none';
+    if (settingsPanel) settingsPanel.style.display = 'none';
+    if (overlay) overlay.style.display = 'none';
+
+    // 3. Get the final HTML
+    const html = document.documentElement.outerHTML;
+
+    // 4. Restore all editor elements immediately
+    if (gearBtn) gearBtn.style.display = '';
+    if (settingsPanel) settingsPanel.style.display = '';
+    if (overlay) overlay.style.display = 'none'; // overlay stays hidden until toggled
+
+    // Re‑apply contenteditable to all originally editable elements
+    editElements.forEach(el => el.setAttribute('contenteditable', 'true'));
+
+    // 5. Trigger download
+    const blob = new Blob(['<!DOCTYPE html>\n' + html], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'index.html';
+    a.click();
+    URL.revokeObjectURL(a.href);
+}
+
+    // Theme toggle
+    function toggleTheme() {
+        document.body.classList.toggle('light');
+        const btn = document.getElementById('themeBtn');
+        if (btn) btn.textContent = document.body.classList.contains('light') ? 'Switch to Dark' : 'Switch to Light';
+    }
+
+    // Settings panel
+    function toggleSettings() {
+        document.getElementById('settingsPanel').classList.toggle('open');
+        document.getElementById('settingsOverlay').classList.toggle('show');
+    }
+    function closeSettings() {
+        document.getElementById('settingsPanel').classList.remove('open');
+        document.getElementById('settingsOverlay').classList.remove('show');
+    }
+
+    // Accent color
+    function setAccent(color, el) {
+        document.documentElement.style.setProperty('--accent', color);
+        const darker = lightenDarken(color, -20);
+        document.documentElement.style.setProperty('--accent-hover', darker);
+        const r = parseInt(color.slice(1,3),16);
+        const g = parseInt(color.slice(3,5),16);
+        const b = parseInt(color.slice(5,7),16);
+        document.documentElement.style.setProperty('--accent-rgb', `${r}, ${g}, ${b}`);
+        document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+        if (el) el.classList.add('active');
+    }
+    function lightenDarken(col, amt) {
+        var usePound = false;
+        if (col[0] == "#") { col = col.slice(1); usePound = true; }
+        var num = parseInt(col,16);
+        var r = (num >> 16) + amt; if (r>255) r=255; else if (r<0) r=0;
+        var g = ((num >> 8) & 0x00FF) + amt; if (g>255) g=255; else if (g<0) g=0;
+        var b = (num & 0x0000FF) + amt; if (b>255) b=255; else if (b<0) b=0;
+        return (usePound?"#":"") + (r << 16 | g << 8 | b).toString(16).padStart(6,'0');
+    }
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+        document.getElementById('mobileDropdown').classList.toggle('open');
+    }
+    function closeMobileMenu() {
+        document.getElementById('mobileDropdown').classList.remove('open');
+    }
+
+    // Buy form toggle
+    document.getElementById('buyNowBtn').addEventListener('click', function() {
+        var form = document.getElementById('contactForm');
+        form.classList.toggle('hidden');
+        this.textContent = form.classList.contains('hidden') ? 'Buy Now – $1,500 USDC' : 'Close Form';
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
-    </script>
-</body>
-</html>
+    });
+</script>
+
+</body></html>
