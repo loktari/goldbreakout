@@ -2,7 +2,43 @@
 <html lang="en" style="--accent: #D4AF37; --accent-hover: #c09b23; --accent-rgb: 212, 175, 55;"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoldBreakout AI Editor – Edit &amp; Save Site Text</title>
+    <title>GoldBreakout AI – Asymmetric Gold Breakout EA for XAUUSD</title>
+    <meta name="description" content="GoldBreakout AI is a high‑risk, high‑reward Expert Advisor for XAUUSD. Built for asymmetric returns, not capital preservation. Free backtest version available.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="gold breakout EA, XAUUSD expert advisor, asymmetric trading, gold trading bot, MT5 EA, algorithmic trading">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="GoldBreakout AI – Asymmetric Gold Breakout EA">
+    <meta property="og:description" content="High‑risk, high‑reward Expert Advisor for XAUUSD. Free backtest version available.">
+    <meta property="og:url" content="https://loktari.github.io/goldbreakout/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="GoldBreakout AI – Asymmetric Gold Breakout EA">
+    <meta name="twitter:description" content="High‑risk, high‑reward Expert Advisor for XAUUSD. Free backtest version available.">
+
+    <!-- Structured Data (JSON‑LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "GoldBreakout AI",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "MetaTrader 5",
+      "description": "Asymmetric gold breakout Expert Advisor for XAUUSD. High‑risk, high‑reward algorithmic trading tool with AI integration.",
+      "offers": {
+        "@type": "Offer",
+        "price": "1500",
+        "priceCurrency": "USDC"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Loki"
+      }
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
     <style>
@@ -250,7 +286,7 @@
         </div>
     </div>
     <div class="mb-6">
-        <button id="editToggleBtn" onclick="toggleEdit()" class="btn-primary w-full mb-3">Turn Edit Mode ON</button>
+        <button id="editToggleBtn" onclick="toggleEdit()" class="btn-primary w-full mb-3">Turn Edit Mode OFF</button>
         <button id="saveBtn" onclick="saveHTML()" class="btn-outline w-full">💾 Save HTML (Download production file)</button>
     </div>
     <button onclick="closeSettings()" class="mt-8 text-sm text-secondary underline">Close</button>
@@ -335,10 +371,10 @@
 
     <!-- Strategy section (image replaced, but text editable) -->
     <section id="strategy" class="py-24 px-6 max-w-6xl mx-auto border-t border-[var(--card-border)]">
-        <h2 class="text-3xl font-semibold mb-12 text-center accent" id="strategy-heading">TL;DR – This Is Not a Savings Account</h2>
+        <h2 class="text-3xl font-semibold mb-12 text-center accent" id="strategy-heading">This Is Not a Savings Account - The strategy</h2>
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-secondary text-lg leading-relaxed">
-                <p id="strategy-p1"><strong class="text-primary">Traditional money management teaches you to protect capital first.</strong> That's great if you already have wealth to protect. But if you're starting from zero, you need a different engine—one that risks a little to capture a lot.</p>
+                <p id="strategy-p1"><strong class="text-primary">Traditional money management teaches you to protect capital first.</strong> That's great if you already have wealth to protect. But if you're starting from zero, you need a different engine—one that takes calculated risks to capture opportunity.</p>
                 <p id="strategy-p2">GoldBreakout AI is that engine. It enters on daily breakouts of XAUUSD with a deliberate asymmetric risk profile:<br><span class="accent font-semibold">Frequent breakeven/ small wins. Rare, violent wins. Rare calculated losses. The result is exponential growth.</span></p>
                 <p id="strategy-p3">You will experience drawdown. You will experience losing streaks. You will also, in the right conditions, see account growth that is impossible with traditional money management.</p>
             </div>
@@ -626,6 +662,9 @@
 
     // ---------- SAVE HTML (download clean production version) ----------
     function saveHTML() {
+        // Ensure latest changes are saved to localStorage first
+        saveEditableState();
+
         const editElements = document.querySelectorAll('[contenteditable]');
         editElements.forEach(el => {
             el.setAttribute('contenteditable', 'false');
