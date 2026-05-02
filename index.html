@@ -21,21 +21,21 @@
     <!-- Structured Data (JSON‑LD) -->
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "GoldBreakout AI",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "MetaTrader 5",
-      "description": "Asymmetric gold breakout Expert Advisor for XAUUSD. High‑risk, high‑reward algorithmic trading tool with AI integration.",
-      "offers": {
-        "@type": "Offer",
-        "price": "1500",
-        "priceCurrency": "USDC"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Loki"
-      }
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "GoldBreakout AI",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "MetaTrader 5",
+        "description": "Asymmetric gold breakout Expert Advisor for XAUUSD. High‑risk, high‑reward algorithmic trading tool with AI integration.",
+        "offers": {
+            "@type": "Offer",
+            "price": "1500",
+            "priceCurrency": "USDC"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Lok"
+        }
     }
     </script>
 
@@ -204,7 +204,7 @@
         }
         #mobileDropdown.open { display: flex; }
 
-        /* Gear button */
+        /* Gear button (visible in editor) */
         .gear-btn {
             position: fixed;
             top: 5rem;
@@ -221,7 +221,7 @@
         }
         .gear-btn:hover { background: var(--hover-bg); }
 
-        /* Settings panel */
+        /* Settings panel (visible in editor) */
         .settings-panel {
             position: fixed; top: 0; right: -300px;
             width: 280px; height: 100vh;
@@ -256,17 +256,28 @@
         /* YouTube icon */
         .yt-link svg { fill: var(--text-secondary); transition: fill 0.2s; }
         .yt-link:hover svg { fill: var(--accent); }
+
+        /* Toast notification */
+        #toast {
+            position: fixed; bottom: 2rem; right: 2rem;
+            background: var(--accent); color: var(--button-text);
+            padding: 0.5rem 1.5rem; border-radius: 2rem;
+            font-weight: 500; z-index: 200;
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        #toast.show { opacity: 1; transform: translateY(0); }
     </style>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-2{margin-right:0.5rem}.mt-0\.5{margin-top:0.125rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-auto{height:auto}.min-h-screen{min-height:100vh}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-6xl{max-width:72rem}.max-w-md{max-width:28rem}.cursor-pointer{cursor:pointer}.list-inside{list-style-position:inside}.list-decimal{list-style-type:decimal}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.gap-12{gap:3rem}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-x-1 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.25rem * var(--tw-space-x-reverse));margin-left:calc(0.25rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-3 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.75rem * var(--tw-space-x-reverse));margin-left:calc(0.75rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.border-t{border-top-width:1px}.border-\[var\(--card-border\)\]{border-color:var(--card-border)}.p-4{padding:1rem}.p-8{padding:2rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.pt-24{padding-top:6rem}.pt-4{padding-top:1rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[10px\]{font-size:10px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.tracking-widest{letter-spacing:0.1em}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.opacity-75{opacity:0.75}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}@media (min-width: 640px){.sm\:flex-row{flex-direction:row}}@media (min-width: 768px){.md\:block{display:block}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:p-12{padding:3rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}}</style></head>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-2{margin-right:0.5rem}.mt-0\.5{margin-top:0.125rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-auto{height:auto}.min-h-screen{min-height:100vh}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-6xl{max-width:72rem}.max-w-md{max-width:28rem}.cursor-pointer{cursor:pointer}.list-inside{list-style-position:inside}.list-decimal{list-style-type:decimal}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.gap-12{gap:3rem}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-x-1 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.25rem * var(--tw-space-x-reverse));margin-left:calc(0.25rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-3 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.75rem * var(--tw-space-x-reverse));margin-left:calc(0.75rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.border-t{border-top-width:1px}.border-\[var\(--card-border\)\]{border-color:var(--card-border)}.p-4{padding:1rem}.p-8{padding:2rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.pt-24{padding-top:6rem}.pt-4{padding-top:1rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[10px\]{font-size:10px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.tracking-widest{letter-spacing:0.1em}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.opacity-75{opacity:0.75}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}@media (min-width: 640px){.sm\:flex-row{flex-direction:row}}@media (min-width: 768px){.md\:block{display:block}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:p-12{padding:3rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}}</style></head>
 <body class="dark">
 
 <!-- Settings overlay -->
 <div id="settingsOverlay" class="settings-overlay show" onclick="closeSettings()" style="display: none;"></div>
 
-<!-- Settings gear -->
+<!-- Settings gear (visible) -->
 <button class="gear-btn" onclick="toggleSettings()" style="display: none;">⚙️</button>
 
-<!-- Settings panel with Edit/Save -->
+<!-- Settings panel with Edit/Save + Image controls -->
 <div id="settingsPanel" class="settings-panel open" style="display: none;">
     <h3 class="text-lg font-semibold text-primary mb-4">Editor Controls</h3>
     <div class="mb-6">
@@ -285,6 +296,24 @@
             <div class="color-swatch" style="background:#EC4899; width:24px; height:24px; border-radius:50%; border:2px solid transparent; cursor:pointer;" onclick="setAccent('#EC4899', this)"></div>
         </div>
     </div>
+
+    <!-- Image URL inputs -->
+    <div class="mb-6">
+        <p class="text-sm text-secondary mb-2">Replace Strategy Image</p>
+        <input type="text" id="strategyImageUrl" class="input-field mb-2" placeholder="Paste new image URL here">
+        <button onclick="updateStrategyImage()" class="btn-outline w-full mb-1">Update Strategy Image</button>
+    </div>
+    <div class="mb-6">
+        <p class="text-sm text-secondary mb-2">Replace Backtest 1 Image</p>
+        <input type="text" id="backtest1Url" class="input-field mb-2" placeholder="Paste new image URL here">
+        <button onclick="updateBacktestImage('backtest1Url', 'backtest1Img')" class="btn-outline w-full mb-1">Update Backtest 1</button>
+    </div>
+    <div class="mb-6">
+        <p class="text-sm text-secondary mb-2">Replace Backtest 2 Image</p>
+        <input type="text" id="backtest2Url" class="input-field mb-2" placeholder="Paste new image URL here">
+        <button onclick="updateBacktestImage('backtest2Url', 'backtest2Img')" class="btn-outline w-full mb-1">Update Backtest 2</button>
+    </div>
+
     <div class="mb-6">
         <button id="editToggleBtn" onclick="toggleEdit()" class="btn-primary w-full mb-3">Turn Edit Mode ON</button>
         <button id="saveBtn" onclick="saveHTML()" class="btn-outline w-full">💾 Save HTML (Download production file)</button>
@@ -292,10 +321,12 @@
     <button onclick="closeSettings()" class="mt-8 text-sm text-secondary underline">Close</button>
 </div>
 
+<!-- Toast notification -->
+<div id="toast" class="show" style="display: none;">Changes saved ✓</div>
+
 <!-- Fixed top navigation -->
 <header id="topNav">
     <div class="container">
-        <!-- Logo replacing plain text -->
         <a href="#home" class="flex items-center space-x-3">
             <div class="flex flex-col items-start leading-tight">
                 <span class="text-2xl font-bold accent tracking-wide">BREAKOUT<span class="text-primary">AI</span></span>
@@ -314,7 +345,7 @@
             <a href="#faq" class="nav-link">FAQ</a>
             <a href="#legal" class="nav-link">Legal</a>
             <!-- YouTube link -->
-            <a href="https://www.youtube.com/@lokibreakoutai" target="_blank" class="yt-link flex items-center" title="YouTube Channel">
+            <a href="https://www.youtube.com/@lokbreakoutai" target="_blank" class="yt-link flex items-center" title="YouTube Channel">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.84.55 9.38.55 9.38.55s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z" fill="currentColor"></path>
                 </svg>
@@ -333,14 +364,14 @@
         <a href="#install" class="nav-link">Install Guide</a>
         <a href="#faq" class="nav-link">FAQ</a>
         <a href="#legal" class="nav-link">Legal</a>
-        <a href="https://www.youtube.com/@lokibreakoutai" target="_blank" class="nav-link flex items-center space-x-1">
+        <a href="https://www.youtube.com/@lokbreakoutai" target="_blank" class="nav-link flex items-center space-x-1">
             <span>YouTube</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.84.55 9.38.55 9.38.55s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z" fill="currentColor"></path></svg>
         </a>
     </div>
 </header>
 
-<!-- Main Content – exact text from your live site, editable -->
+<!-- Main Content – exact text from live site, with contenteditable id attributes -->
 <main class="min-h-screen pt-24">
 
     <!-- Hero section -->
@@ -369,7 +400,7 @@
         </div>
     </section>
 
-    <!-- Strategy section (image replaced, but text editable) -->
+    <!-- Strategy section -->
     <section id="strategy" class="py-24 px-6 max-w-6xl mx-auto border-t border-[var(--card-border)]">
         <h2 class="text-3xl font-semibold mb-12 text-center accent" id="strategy-heading">TL;DR – This Is Not a Savings Account</h2>
         <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -379,7 +410,7 @@
                 <p id="strategy-p3">You will experience drawdown. You will experience losing streaks. You will also, in the right conditions, see account growth that is impossible with traditional money management.</p>
             </div>
             <div class="flex justify-center">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&amp;h=300&amp;fit=crop" alt="Financial markets" class="rounded-2xl shadow-lg" style="max-width:100%; height:auto;" loading="lazy">
+                <img id="strategyImg" src="https://github.com/loktari/goldbreakout/blob/main/logo.png?raw=true" alt="Financial markets" class="rounded-2xl shadow-lg" style="max-width:100%; height:auto;" loading="lazy">
             </div>
         </div>
     </section>
@@ -421,36 +452,12 @@
     <section id="features" class="py-24 px-6 max-w-6xl mx-auto border-t border-[var(--card-border)]">
         <h2 class="text-3xl font-semibold mb-16 text-center accent" id="features-heading">Core Technology</h2>
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="card">
-                <div class="accent text-2xl mb-4">⚡</div>
-                <h3 class="text-xl font-semibold mb-3 text-primary" id="feat1-title">Breakout Entry</h3>
-                <p class="text-secondary text-sm" id="feat1-desc">Simple and effective proprietary method for front‑running liquidity.</p>
-            </div>
-            <div class="card">
-                <div class="accent text-2xl mb-4">📊</div>
-                <h3 class="text-xl font-semibold mb-3 text-primary" id="feat2-title">Partial Take Profit</h3>
-                <p class="text-secondary text-sm" id="feat2-desc">Secures profits early, keeps a runner.</p>
-            </div>
-            <div class="card">
-                <div class="accent text-2xl mb-4">🛡️</div>
-                <h3 class="text-xl font-semibold mb-3 text-primary" id="feat3-title">Breakeven + Lock</h3>
-                <p class="text-secondary text-sm" id="feat3-desc">SL moves to guaranteed profit quickly.</p>
-            </div>
-            <div class="card">
-                <div class="accent text-2xl mb-4">🎯</div>
-                <h3 class="text-xl font-semibold mb-3 text-primary" id="feat4-title">Precision Trailing</h3>
-                <p class="text-secondary text-sm" id="feat4-desc">Method of capturing opportunity with mathematical precision. Impossible for any human to execute manually. Works 24/5.</p>
-            </div>
-            <div class="card">
-                <div class="accent text-2xl mb-4">🔢</div>
-                <h3 class="text-xl font-semibold mb-3 text-primary" id="feat5-title">Risk‑Based Lot Sizing</h3>
-                <p class="text-secondary text-sm" id="feat5-desc">Auto‑sizes positions to % of balance. Exponential growth key.</p>
-            </div>
-            <div class="card">
-                <div class="accent text-2xl mb-4">🧠</div>
-                <h3 class="text-xl font-semibold mb-3 text-primary" id="feat6-title">AI‑Ready Adaptability</h3>
-                <p class="text-secondary text-sm" id="feat6-desc">Global Variables allow external control.</p>
-            </div>
+            <div class="card"><div class="accent text-2xl mb-4">⚡</div><h3 class="text-xl font-semibold mb-3 text-primary" id="feat1-title">Breakout Entry</h3><p class="text-secondary text-sm" id="feat1-desc">Simple and effective proprietary method for front‑running liquidity.</p></div>
+            <div class="card"><div class="accent text-2xl mb-4">📊</div><h3 class="text-xl font-semibold mb-3 text-primary" id="feat2-title">Partial Take Profit</h3><p class="text-secondary text-sm" id="feat2-desc">Secures profits early, keeps a runner.</p></div>
+            <div class="card"><div class="accent text-2xl mb-4">🛡️</div><h3 class="text-xl font-semibold mb-3 text-primary" id="feat3-title">Breakeven + Lock</h3><p class="text-secondary text-sm" id="feat3-desc">SL moves to guaranteed profit quickly.</p></div>
+            <div class="card"><div class="accent text-2xl mb-4">🎯</div><h3 class="text-xl font-semibold mb-3 text-primary" id="feat4-title">Precision Trailing</h3><p class="text-secondary text-sm" id="feat4-desc">Method of capturing opportunity with mathematical precision. Impossible for any human to execute manually. Works 24/5.</p></div>
+            <div class="card"><div class="accent text-2xl mb-4">🔢</div><h3 class="text-xl font-semibold mb-3 text-primary" id="feat5-title">Risk‑Based Lot Sizing</h3><p class="text-secondary text-sm" id="feat5-desc">Auto‑sizes positions to % of balance. Exponential growth key.</p></div>
+            <div class="card"><div class="accent text-2xl mb-4">🧠</div><h3 class="text-xl font-semibold mb-3 text-primary" id="feat6-title">AI‑Ready Adaptability</h3><p class="text-secondary text-sm" id="feat6-desc">Global Variables allow external control.</p></div>
         </div>
     </section>
 
@@ -468,8 +475,18 @@
         <h2 class="text-3xl font-semibold mb-6 accent" id="backtest-heading">Real Backtest Results</h2>
         <p class="text-secondary mb-12 max-w-2xl mx-auto" id="backtest-p">Default parameters on XAUUSD. Notice the steep climbs and visible drawdowns – that's the asymmetry.</p>
         <div class="grid md:grid-cols-2 gap-8">
-            <div class="card p-4"><a href="https://github.com/loktari/goldbreakout/blob/main/backtest1.png?raw=true" target="_blank"><img src="https://github.com/loktari/goldbreakout/blob/main/backtest1.png?raw=true" alt="Backtest 1" class="w-full h-auto rounded" loading="lazy"></a><p class="text-xs text-secondary mt-3" id="backtest-cap1">Backtest results</p></div>
-            <div class="card p-4"><a href="https://github.com/loktari/goldbreakout/blob/main/backtest2.png?raw=true" target="_blank"><img src="https://github.com/loktari/goldbreakout/blob/main/backtest2.png?raw=true" alt="Backtest 2" class="w-full h-auto rounded" loading="lazy"></a><p class="text-xs text-secondary mt-3" id="backtest-cap2">Balance/Equity curve – multi‑year run.</p></div>
+            <div class="card p-4">
+                <a href="https://github.com/loktari/goldbreakout/blob/main/backtest1.png?raw=true" target="_blank">
+                    <img id="backtest1Img" src="https://github.com/loktari/goldbreakout/blob/main/backtest1.png?raw=true" alt="Backtest 1" class="w-full h-auto rounded" loading="lazy">
+                </a>
+                <p class="text-xs text-secondary mt-3" id="backtest-cap1">Backtest results</p>
+            </div>
+            <div class="card p-4">
+                <a href="https://github.com/loktari/goldbreakout/blob/main/backtest2.png?raw=true" target="_blank">
+                    <img id="backtest2Img" src="https://github.com/loktari/goldbreakout/blob/main/backtest2.png?raw=true" alt="Backtest 2" class="w-full h-auto rounded" loading="lazy">
+                </a>
+                <p class="text-xs text-secondary mt-3" id="backtest-cap2">Balance/Equity curve – multi‑year run.</p>
+            </div>
         </div>
     </section>
 
@@ -506,26 +523,11 @@
     <section id="faq" class="py-24 px-6 max-w-3xl mx-auto border-t border-[var(--card-border)]">
         <h2 class="text-3xl font-semibold mb-12 text-center accent" id="faq-heading">Frequently Asked Questions</h2>
         <div class="space-y-6">
-            <details class="card">
-                <summary class="text-primary font-medium cursor-pointer" id="faq-q1">Why is the free version backtest‑only?</summary>
-                <p class="mt-3 text-secondary text-sm" id="faq-a1">So you can thoroughly evaluate the strategy with zero risk. The free EA is identical to the paid one in logic, but hard‑coded to refuse live orders. You can test every scenario in the MT5 Strategy Tester before deciding to upgrade.</p>
-            </details>
-            <details class="card">
-                <summary class="text-primary font-medium cursor-pointer" id="faq-q2">Can I run the free EA on a demo account?</summary>
-                <p class="mt-3 text-secondary text-sm" id="faq-a2">No – the free version will not trade on any live chart, demo or real. It is designed exclusively for the Strategy Tester.</p>
-            </details>
-            <details class="card">
-                <summary class="text-primary font-medium cursor-pointer" id="faq-q3">What's the difference between Free and Lifetime?</summary>
-                <p class="mt-3 text-secondary text-sm" id="faq-a3">The free version has all trading features but is restricted to backtesting and parameters are locked. Lifetime unlocks live trading, full input customization, and the Global Variable interface for AI integration.</p>
-            </details>
-            <details class="card">
-                <summary class="text-primary font-medium cursor-pointer" id="faq-q4">Can I use my own AI agent?</summary>
-                <p class="mt-3 text-secondary text-sm" id="faq-a4">Yes – with Lifetime, the EA exposes a real‑time parameter bridge via Global Variables. You (or your AI) can push new values for trailing stop, breakeven, offset, etc. Full documentation is provided after purchase.</p>
-            </details>
-            <details class="card">
-                <summary class="text-primary font-medium cursor-pointer" id="faq-q5">What is your refund policy?</summary>
-                <p class="mt-3 text-secondary text-sm" id="faq-a5">All sales are final. Please test the free version thoroughly in the Strategy Tester before upgrading.</p>
-            </details>
+            <details class="card"><summary class="text-primary font-medium cursor-pointer" id="faq-q1">Why is the free version backtest‑only?</summary><p class="mt-3 text-secondary text-sm" id="faq-a1">So you can thoroughly evaluate the strategy with zero risk. The free EA is identical to the paid one in logic, but hard‑coded to refuse live orders. You can test every scenario in the MT5 Strategy Tester before deciding to upgrade.</p></details>
+            <details class="card"><summary class="text-primary font-medium cursor-pointer" id="faq-q2">Can I run the free EA on a demo account?</summary><p class="mt-3 text-secondary text-sm" id="faq-a2">No – the free version will not trade on any live chart, demo or real. It is designed exclusively for the Strategy Tester.</p></details>
+            <details class="card"><summary class="text-primary font-medium cursor-pointer" id="faq-q3">What's the difference between Free and Lifetime?</summary><p class="mt-3 text-secondary text-sm" id="faq-a3">The free version has all trading features but is restricted to backtesting and parameters are locked. Lifetime unlocks live trading, full input customization, and the Global Variable interface for AI integration.</p></details>
+            <details class="card"><summary class="text-primary font-medium cursor-pointer" id="faq-q4">Can I use my own AI agent?</summary><p class="mt-3 text-secondary text-sm" id="faq-a4">Yes – with Lifetime, the EA exposes a real‑time parameter bridge via Global Variables. You (or your AI) can push new values for trailing stop, breakeven, offset, etc. Full documentation is provided after purchase.</p></details>
+            <details class="card"><summary class="text-primary font-medium cursor-pointer" id="faq-q5">What is your refund policy?</summary><p class="mt-3 text-secondary text-sm" id="faq-a5">All sales are final. Please test the free version thoroughly in the Strategy Tester before upgrading.</p></details>
         </div>
     </section>
 
@@ -614,6 +616,7 @@
             data[key] = el.innerHTML;
         });
         localStorage.setItem('goldbreakout_editor_state', JSON.stringify(data));
+        showToast('Changes saved ✓');
     }
 
     function restoreEditableState() {
@@ -627,6 +630,14 @@
                 el.innerHTML = data[key];
             }
         });
+    }
+
+    // Toast notification
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => { toast.classList.remove('show'); }, 2000);
     }
 
     document.addEventListener('blur', function(e) {
@@ -660,11 +671,41 @@
         }
     }
 
+    // ---------- IMAGE UPDATES ----------
+    function updateStrategyImage() {
+        const newUrl = document.getElementById('strategyImageUrl').value.trim();
+        if (!newUrl) return;
+        document.getElementById('strategyImg').src = newUrl;
+        document.getElementById('strategyImageUrl').value = '';
+        saveEditableState(); // also save the new image state
+        showToast('Strategy image updated ✓');
+    }
+
+    function updateBacktestImage(inputId, imageId) {
+        const newUrl = document.getElementById(inputId).value.trim();
+        if (!newUrl) return;
+        document.getElementById(imageId).src = newUrl;
+        document.getElementById(inputId).value = '';
+        // Update the parent link to match the new image
+        const linkEl = document.getElementById(imageId).parentElement;
+        if (linkEl && linkEl.tagName === 'A') {
+            linkEl.href = newUrl;
+        }
+        saveEditableState();
+        showToast('Image updated ✓');
+    }
+
     // ---------- SAVE HTML (download clean production version) ----------
     function saveHTML() {
-        // Ensure latest changes are saved to localStorage first
+        // Force any active editing cursor to finalize its changes
+        if (document.activeElement) {
+            document.activeElement.blur();
+        }
+
+        // Save the current state to localStorage
         saveEditableState();
 
+        // Temporarily remove editing attributes and edit-only UI
         const editElements = document.querySelectorAll('[contenteditable]');
         editElements.forEach(el => {
             el.setAttribute('contenteditable', 'false');
@@ -674,15 +715,20 @@
         const gearBtn = document.querySelector('.gear-btn');
         const settingsPanel = document.getElementById('settingsPanel');
         const overlay = document.getElementById('settingsOverlay');
+        const toast = document.getElementById('toast');
         if (gearBtn) gearBtn.style.display = 'none';
         if (settingsPanel) settingsPanel.style.display = 'none';
         if (overlay) overlay.style.display = 'none';
+        if (toast) toast.style.display = 'none';
 
+        // Capture the clean HTML
         const html = document.documentElement.outerHTML;
 
+        // Restore the editor instantly
         if (gearBtn) gearBtn.style.display = '';
         if (settingsPanel) settingsPanel.style.display = '';
         if (overlay) overlay.style.display = 'none';
+        if (toast) toast.style.display = '';
 
         if (editMode) {
             editElements.forEach(el => el.setAttribute('contenteditable', 'true'));
@@ -690,6 +736,7 @@
             editElements.forEach(el => el.setAttribute('contenteditable', 'false'));
         }
 
+        // Download the clean file
         const blob = new Blob(['<!DOCTYPE html>\n' + html], {type: 'text/html'});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
