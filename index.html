@@ -274,7 +274,7 @@
 <!-- Settings overlay -->
 <div id="settingsOverlay" class="settings-overlay show" onclick="closeSettings()" style="display: none;"></div>
 
-<!-- Settings gear (visible) -->
+<!-- Settings gear (visible in editor) -->
 <button class="gear-btn" onclick="toggleSettings()" style="display: none;">⚙️</button>
 
 <!-- Settings panel with Edit/Save + Image controls -->
@@ -346,16 +346,16 @@
             <a href="#faq" class="nav-link">FAQ</a>
             <a href="#legal" class="nav-link">Legal</a>
             <!-- YouTube link -->
-            <a href="https://www.youtube.com/@lokbreakoutai" target="_blank" class="yt-link flex items-center" title="YouTube Channel">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.84.55 9.38.55 9.38.55s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z" fill="currentColor"></path>
-                </svg>
-            </a>
-        </div>
-        <button id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
-    </div>
-    <div id="mobileDropdown">
-        <a href="#home" class="nav-link">Home</a>
+            <a href="https://www.youtube.com/@lokbreako...&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;button id=" mobilemenubtn"="" onclick="toggleMobileMenu()">☰
+    </a></div><a href="https://www.youtube.com/@lokbreako...&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;button id=" mobilemenubtn"="" onclick="toggleMobileMenu()">
+    </a><div id="mobileDropdown"><a href="https://www.youtube.com/@lokbreako...&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;button id=" mobilemenubtn"="" onclick="toggleMobileMenu()">
+        </a><a href="#home" class="nav-link">Home</a>
         <a href="#strategy" class="nav-link">Strategy</a>
         <a href="#free" class="nav-link">Free Version</a>
         <a href="#founder" class="nav-link">Founder</a>
@@ -370,7 +370,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.84.55 9.38.55 9.38.55s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z" fill="currentColor"></path></svg>
         </a>
     </div>
-</header>
+</div></header>
 
 <!-- Main Content – editable text throughout -->
 <main class="min-h-screen pt-24">
@@ -407,7 +407,7 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-secondary text-lg leading-relaxed">
                 <p id="strategy-p1"><strong class="text-primary">Traditional money management teaches you to protect capital first.</strong> That's great if you already have wealth to protect. But if you're starting from zero, you need a different engine—one that risks a little to capture a lot.</p>
-                <p id="strategy-p2">GoldBreakout AI is that engine. It enters on daily breakouts of XAUUSD with a deliberate asymmetric risk profile:<br><span class="accent font-semibold">Frequent breakeven/ small wins. Rare, violent wins. Rare calculated losses. The result is exponential growth.</span></p>
+                <p id="strategy-p2">GoldBreakout AI is that engine. It enters on daily breakouts of XAUUSD with a deliberate asymmetric risk profile:<br><span class="accent font-semibold">Frequent breakeven / small wins. Rare, violent wins. Rare calculated losses. The result is exponential growth.</span></p>
                 <p id="strategy-p3">You will experience drawdown. You will experience losing streaks. You will also, in the right conditions, see account growth that is impossible with traditional money management.</p>
             </div>
             <div class="flex justify-center">
@@ -430,7 +430,8 @@
                 <li id="free-li3">✓ Default parameters that we use ourselves</li>
             </ul>
             <div class="mt-8">
-                <a href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="btn-primary" download="">Download Free EA</a>
+                <!-- Free Download Button 1 -->
+                <a id="freeDownloadBtn" href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="btn-primary" download="" onclick="countClick('free-download-1')">Download Free EA</a>
                 <p class="text-xs text-secondary mt-2"><code>GoldBreakoutAI_Free.ex5</code></p>
             </div>
         </div>
@@ -505,7 +506,8 @@
                     <li id="pricing-li2">✓ AI integration via Global Variables</li>
                     <li id="pricing-li3">✓ Lifetime updates &amp; support</li>
                 </ul>
-                <button id="buyNowBtn" class="btn-primary w-full">Buy Now – $1,500 USDC</button>
+                <!-- Buy Now Button (triggers form + counter) -->
+                <button id="buyNowBtn" class="btn-primary w-full" onclick="countClick('buy-now')">Buy Now – $1,500 USDC</button>
                 <div id="contactForm" class="hidden mt-6 w-full text-left">
                     <form action="https://formspree.io/f/mgodwyda" method="POST">
                         <input type="email" name="_replyto" placeholder="Your email address" required="" class="input-field mb-3">
@@ -582,7 +584,10 @@
             <div>
                 <h3 class="text-xl font-semibold text-primary mb-3" id="install-sub1">Free Backtest EA</h3>
                 <ol class="list-decimal list-inside space-y-2">
-                    <li><a href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="accent underline" download="">Download free EA</a></li>
+                    <li>
+                        <!-- Free Download Button 2 -->
+                        <a id="installDownloadBtn" href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="accent underline" download="" onclick="countClick('free-download-2')">Download free EA</a>
+                    </li>
                     <li id="install-li1">Move to MT5/Experts folder</li>
                     <li id="install-li2">Restart MT5, run in Strategy Tester on XAUUSD.</li>
                 </ol>
@@ -603,6 +608,12 @@
 </main>
 
 <script>
+    // ---------- COUNTER (CountAPI) ----------
+    function countClick(buttonId) {
+        fetch(`https://api.countapi.xyz/hit/loktari-goldbreakout/${buttonId}`)
+            .catch(() => {}); // fail silently
+    }
+
     // ---------- AUTO‑SAVE to localStorage ----------
     function getElementIdentifier(el) {
         if (el.id) return el.id;
@@ -680,7 +691,7 @@
         if (!newUrl) return;
         document.getElementById('strategyImg').src = newUrl;
         document.getElementById('strategyImageUrl').value = '';
-        saveEditableState(); // also save the new image state
+        saveEditableState();
         showToast('Strategy image updated ✓');
     }
 
@@ -689,7 +700,6 @@
         if (!newUrl) return;
         document.getElementById(imageId).src = newUrl;
         document.getElementById(inputId).value = '';
-        // Update the parent link to match the new image
         const linkEl = document.getElementById(imageId).parentElement;
         if (linkEl && linkEl.tagName === 'A') {
             linkEl.href = newUrl;
@@ -739,7 +749,7 @@
             editElements.forEach(el => el.setAttribute('contenteditable', 'false'));
         }
 
-        // Download the clean file
+        // Download the clean file (the counter code is already part of the page)
         const blob = new Blob(['<!DOCTYPE html>\n' + html], {type: 'text/html'});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
