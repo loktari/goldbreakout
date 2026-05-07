@@ -2,7 +2,7 @@
 <html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoldBreakout AI – Asymmetric Gold Breakout EA for XAUUSD</title>
+    <title>GoldBreakout AI Editor – Edit &amp; Save Site Text</title>
     <meta name="description" content="GoldBreakout AI is a high‑risk, high‑reward Expert Advisor for XAUUSD. Built for asymmetric returns, not capital preservation. Free backtest version available.">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="gold breakout EA, XAUUSD expert advisor, asymmetric trading, gold trading bot, MT5 EA, algorithmic trading">
@@ -204,7 +204,7 @@
         }
         #mobileDropdown.open { display: flex; }
 
-        /* Gear button (visible in editor) */
+        /* Gear button */
         .gear-btn {
             position: fixed;
             top: 5rem;
@@ -221,7 +221,7 @@
         }
         .gear-btn:hover { background: var(--hover-bg); }
 
-        /* Settings panel (visible in editor) */
+        /* Settings panel */
         .settings-panel {
             position: fixed; top: 0; right: -300px;
             width: 280px; height: 100vh;
@@ -274,10 +274,10 @@
 <!-- Settings overlay -->
 <div id="settingsOverlay" class="settings-overlay show" onclick="closeSettings()" style="display: none;"></div>
 
-<!-- Settings gear (visible in editor) -->
+<!-- Settings gear -->
 <button class="gear-btn" onclick="toggleSettings()" style="display: none;">⚙️</button>
 
-<!-- Settings panel with Edit/Save + Image controls -->
+<!-- Settings panel -->
 <div id="settingsPanel" class="settings-panel open" style="display: none;">
     <h3 class="text-lg font-semibold text-primary mb-4">Editor Controls</h3>
     <div class="mb-6">
@@ -317,6 +317,7 @@
     <div class="mb-6">
         <button id="editToggleBtn" onclick="toggleEdit()" class="btn-primary w-full mb-3">Turn Edit Mode ON</button>
         <button id="saveBtn" onclick="saveHTML()" class="btn-outline w-full">💾 Save HTML (Download production file)</button>
+        <button id="saveEditorBtn" onclick="saveEditor()" class="btn-outline w-full mt-2">💾 Save Editor (Download new editor.html)</button>
     </div>
     <button onclick="closeSettings()" class="mt-8 text-sm text-secondary underline">Close</button>
 </div>
@@ -327,11 +328,11 @@
 <!-- Fixed top navigation -->
 <header id="topNav">
     <div class="container">
-        <!-- Logo replacing plain text -->
+        <!-- Logo -->
         <a href="#home" class="flex items-center space-x-3">
             <div class="flex flex-col items-start leading-tight">
                 <span class="text-2xl font-bold accent tracking-wide">BREAKOUT<span class="text-primary">AI</span></span>
-                <span class="text-[10px] text-secondary tracking-widest">TRADEBEYOND LIMITS</span>
+                <span class="text-[10px] text-secondary tracking-widest">TRADE BEYOND LIMITS</span>
             </div>
         </a>
         <div class="nav-links">
@@ -346,33 +347,33 @@
             <a href="#faq" class="nav-link">FAQ</a>
             <a href="#legal" class="nav-link">Legal</a>
             <!-- YouTube link -->
-            <a href="https://www.youtube.com/@lokbreako...&lt;/a&gt;
-        &lt;/div&gt;
-        &lt;button id=" mobilemenubtn"="" onclick="toggleMobileMenu()">☰
-    </a></div><a href="https://www.youtube.com/@lokbreako...&lt;/a&gt;
-        &lt;/div&gt;
-        &lt;button id=" mobilemenubtn"="" onclick="toggleMobileMenu()">
-    </a><div id="mobileDropdown"><a href="https://www.youtube.com/@lokbreako...&lt;/a&gt;
-        &lt;/div&gt;
-        &lt;button id=" mobilemenubtn"="" onclick="toggleMobileMenu()">
-        </a><a href="#home" class="nav-link">Home</a>
-        <a href="#strategy" class="nav-link">Strategy</a>
-        <a href="#free" class="nav-link">Free Version</a>
-        <a href="#founder" class="nav-link">Founder</a>
-        <a href="#features" class="nav-link">Features</a>
-        <a href="#backtest" class="nav-link">Backtest</a>
-        <a href="#pricing" class="nav-pill">Get Unlocked</a>
-        <a href="#install" class="nav-link">Install Guide</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#legal" class="nav-link">Legal</a>
-        <a href="https://www.youtube.com/@lokbreakoutai" target="_blank" class="nav-link flex items-center space-x-1">
+            <a href="https://www.youtube.com/@lokbreakoutai" target="_blank" class="yt-link flex items-center" title="YouTube Channel">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.84.55 9.38.55 9.38.55s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z" fill="currentColor"></path>
+                </svg>
+            </a>
+        </div>
+        <button id="mobileMenuBtn" onclick="toggleMobileMenu(event)">☰</button>
+    </div>
+    <div id="mobileDropdown">
+        <a href="#home" class="nav-link" onclick="closeMobileMenu()">Home</a>
+        <a href="#strategy" class="nav-link" onclick="closeMobileMenu()">Strategy</a>
+        <a href="#free" class="nav-link" onclick="closeMobileMenu()">Free Version</a>
+        <a href="#founder" class="nav-link" onclick="closeMobileMenu()">Founder</a>
+        <a href="#features" class="nav-link" onclick="closeMobileMenu()">Features</a>
+        <a href="#backtest" class="nav-link" onclick="closeMobileMenu()">Backtest</a>
+        <a href="#pricing" class="nav-pill" onclick="closeMobileMenu()">Get Unlocked</a>
+        <a href="#install" class="nav-link" onclick="closeMobileMenu()">Install Guide</a>
+        <a href="#faq" class="nav-link" onclick="closeMobileMenu()">FAQ</a>
+        <a href="#legal" class="nav-link" onclick="closeMobileMenu()">Legal</a>
+        <a href="https://www.youtube.com/@lokbreakoutai" target="_blank" class="nav-link flex items-center space-x-1" onclick="closeMobileMenu()">
             <span>YouTube</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.84.55 9.38.55 9.38.55s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z" fill="currentColor"></path></svg>
         </a>
     </div>
-</div></header>
+</header>
 
-<!-- Main Content – editable text throughout -->
+<!-- Main Content – all text editable, images persisted -->
 <main class="min-h-screen pt-24">
 
     <!-- Hero section -->
@@ -401,7 +402,7 @@
         </div>
     </section>
 
-    <!-- Strategy section (image now links to YouTube) -->
+    <!-- Strategy section -->
     <section id="strategy" class="py-24 px-6 max-w-6xl mx-auto border-t border-[var(--card-border)]">
         <h2 class="text-3xl font-semibold mb-12 text-center accent" id="strategy-heading">TL;DR – This Is Not a Savings Account</h2>
         <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -430,7 +431,6 @@
                 <li id="free-li3">✓ Default parameters that we use ourselves</li>
             </ul>
             <div class="mt-8">
-                <!-- Free Download Button 1 -->
                 <a id="freeDownloadBtn" href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="btn-primary" download="" onclick="countClick('free-download-1')">Download Free EA</a>
                 <p class="text-xs text-secondary mt-2"><code>GoldBreakoutAI_Free.ex5</code></p>
             </div>
@@ -506,7 +506,6 @@
                     <li id="pricing-li2">✓ AI integration via Global Variables</li>
                     <li id="pricing-li3">✓ Lifetime updates &amp; support</li>
                 </ul>
-                <!-- Buy Now Button (triggers form + counter) -->
                 <button id="buyNowBtn" class="btn-primary w-full" onclick="countClick('buy-now')">Buy Now – $1,500 USDC</button>
                 <div id="contactForm" class="hidden mt-6 w-full text-left">
                     <form action="https://formspree.io/f/mgodwyda" method="POST">
@@ -546,17 +545,17 @@
                     <p id="legal-discl-1"><strong class="text-primary">GoldBreakout AI is a software tool, not an investment advisor.</strong></p>
                     <p id="legal-discl-2">The content on this website is for informational purposes only and does not constitute financial, investment, tax, or legal advice. No representation is being made that any account will or is likely to achieve profits or losses similar to those discussed or shown in backtests. <strong class="text-primary">Past performance is not indicative of future results.</strong></p>
                     <p id="legal-discl-3">Trading foreign exchange on margin involves a high degree of risk and may not be suitable for all investors. You could lose all of your capital. You should consider your financial situation, risk tolerance, and experience before using any automated trading software.</p>
-                    <p id="legal-discl-4">GoldBreakout AI is provided “as‑is” without any warranty of any kind, either express or implied, including but not limited to the implied warranties of merchantability or fitness for a particular purpose. The developer assumes no responsibility or liability for any trading losses, data inaccuracies, or any other damages arising from the use of this software. You assume full responsibility for all trading decisions and outcomes.</p>
-                    <p id="legal-discl-5">The “Free Backtest‑Only Version” is strictly limited to the Strategy Tester and will not execute live trades.</p>
+                    <p id="legal-discl-4">GoldBreakout AI is provided "as‑is" without any warranty of any kind, either express or implied, including but not limited to the implied warranties of merchantability or fitness for a particular purpose. The developer assumes no responsibility or liability for any trading losses, data inaccuracies, or any other damages arising from the use of this software. You assume full responsibility for all trading decisions and outcomes.</p>
+                    <p id="legal-discl-5">The "Free Backtest‑Only Version" is strictly limited to the Strategy Tester and will not execute live trades.</p>
                 </div>
             </details>
             <details>
                 <summary class="text-lg font-semibold text-primary cursor-pointer" id="legal-pp-title">Privacy Policy</summary>
                 <div class="mt-4 space-y-3">
-                    <p id="legal-pp-1">GoldBreakout AI (“we,” “us,” “our”) is committed to protecting your privacy. This Privacy Policy explains how we handle the personal information you provide through our website.</p>
-                    <p id="legal-pp-2"><strong>Data Collection:</strong> When you submit the contact form on our “Buy Now” page, we collect your email address and any message you choose to send. This data is transmitted via <a href="https://formspree.io" class="accent underline" target="_blank">Formspree</a> (a third‑party service) and forwarded to us.</p>
+                    <p id="legal-pp-1">GoldBreakout AI ("we," "us," "our") is committed to protecting your privacy. This Privacy Policy explains how we handle the personal information you provide through our website.</p>
+                    <p id="legal-pp-2"><strong>Data Collection:</strong> When you submit the contact form on our "Buy Now" page, we collect your email address and any message you choose to send. This data is transmitted via <a href="https://formspree.io" class="accent underline" target="_blank">Formspree</a> (a third‑party service) and forwarded to us.</p>
                     <p id="legal-pp-3"><strong>Purpose:</strong> We use your email address solely to respond to your inquiry, provide payment instructions, and deliver the purchased software. We do not use it for marketing or promotional communications without your explicit consent.</p>
-                    <p id="legal-pp-4"><strong>Storage and Processing:</strong> Your data is hosted on Formspree’s servers in the United States. Formspree’s privacy practices can be found <a href="https://formspree.io/legal/privacy-policy/" class="accent underline" target="_blank">here</a>.</p>
+                    <p id="legal-pp-4"><strong>Storage and Processing:</strong> Your data is hosted on Formspree's servers in the United States. Formspree's privacy practices can be found <a href="https://formspree.io/legal/privacy-policy/" class="accent underline" target="_blank">here</a>.</p>
                     <p id="legal-pp-5"><strong>Your Rights (GDPR):</strong> If you are a resident of the European Union, you have the right to access, rectify, or erase your personal data. To exercise these rights, please contact us at <a href="mailto:lordkahmah@gmail.com" class="accent underline">lordkahmah@gmail.com</a> or simply reply to any communication we send you. We will process your request within 30 days.</p>
                     <p id="legal-pp-6"><strong>Consent:</strong> By submitting the contact form and checking the consent box, you agree to the collection and processing of your data as described in this policy.</p>
                     <p id="legal-pp-7">We do not sell, share, or rent your personal information to anyone else.</p>
@@ -565,13 +564,13 @@
             <details>
                 <summary class="text-lg font-semibold text-primary cursor-pointer" id="legal-tos-title">Terms and Conditions</summary>
                 <div class="mt-4 space-y-3">
-                    <p id="legal-tos-1">By downloading, purchasing, or using GoldBreakout AI (the “Software”), you agree to be bound by these Terms and Conditions. If you do not agree, do not use the Software.</p>
+                    <p id="legal-tos-1">By downloading, purchasing, or using GoldBreakout AI (the "Software"), you agree to be bound by these Terms and Conditions. If you do not agree, do not use the Software.</p>
                     <p id="legal-tos-2"><strong>License:</strong> Upon purchase, you are granted a non‑exclusive, non‑transferable, lifetime license to use the Software on one personal trading account (or unlimited accounts, depending on the product you purchased). You may not sublicense, resell, lease, or redistribute the Software without prior written permission.</p>
                     <p id="legal-tos-3"><strong>Intellectual Property:</strong> All code, documentation, algorithms, and associated materials are the exclusive property of GoldBreakout AI. You may not decompile, reverse‑engineer, or attempt to extract the source code from the compiled executable files.</p>
                     <p id="legal-tos-4"><strong>Refund Policy:</strong> All sales are final. We do not offer refunds. Please use the free backtest‑only version to thoroughly evaluate the Software before purchase.</p>
                     <p id="legal-tos-5"><strong>Withdrawal Right (EU consumers):</strong> Under EU consumer law, you have a right to withdraw from a distance contract within 14 days. However, because the Software consists of digital content that is delivered immediately after purchase, you will lose that right once the files are made available to you. By checking the consent box on the order form, you explicitly acknowledge and agree to the immediate delivery of the digital content and the consequent loss of your withdrawal right.</p>
                     <p id="legal-tos-6"><strong>Limitation of Liability:</strong> In no event will GoldBreakout AI or its developer be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in connection with the use or performance of the Software, including but not limited to trading losses, loss of profit, or data corruption. This limitation applies even if we have been advised of the possibility of such damages.</p>
-                    <p id="legal-tos-7"><strong>Governing Law:</strong> These Terms shall be governed by and construed in accordance with the laws of the European Union. Any dispute arising out of or relating to these Terms shall be subject to the exclusive jurisdiction of the courts of the user’s domicile within the European Union.</p>
+                    <p id="legal-tos-7"><strong>Governing Law:</strong> These Terms shall be governed by and construed in accordance with the laws of the European Union. Any dispute arising out of or relating to these Terms shall be subject to the exclusive jurisdiction of the courts of the user's domicile within the European Union.</p>
                 </div>
             </details>
         </div>
@@ -585,7 +584,6 @@
                 <h3 class="text-xl font-semibold text-primary mb-3" id="install-sub1">Free Backtest EA</h3>
                 <ol class="list-decimal list-inside space-y-2">
                     <li>
-                        <!-- Free Download Button 2 -->
                         <a id="installDownloadBtn" href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="accent underline" download="" onclick="countClick('free-download-2')">Download free EA</a>
                     </li>
                     <li id="install-li1">Move to MT5/Experts folder</li>
@@ -608,13 +606,19 @@
 </main>
 
 <script>
-    // ---------- COUNTER (CountAPI) ----------
-    function countClick(buttonId) {
-        fetch(`https://api.countapi.xyz/hit/loktari-goldbreakout/${buttonId}`)
-            .catch(() => {}); // fail silently
-    }
+// ---------- COUNTER (Abacus) ----------
+function countClick(buttonId) {
+    try {
+        const url = `https://abacus.jasoncameron.dev/hit/loktari-goldbreakout/${buttonId}`;
+        if (navigator.sendBeacon) {
+            navigator.sendBeacon(url);
+        } else {
+            new Image().src = url;
+        }
+    } catch (e) {}
+}
 
-    // ---------- AUTO‑SAVE to localStorage ----------
+    // ---------- AUTO‑SAVE to localStorage (including images) ----------
     function getElementIdentifier(el) {
         if (el.id) return el.id;
         const tag = el.tagName.toLowerCase();
@@ -629,6 +633,10 @@
             const key = getElementIdentifier(el);
             data[key] = el.innerHTML;
         });
+        // Also save image sources
+        data['__strategyImg__'] = document.getElementById('strategyImg').src;
+        data['__backtest1Img__'] = document.getElementById('backtest1Img').src;
+        data['__backtest2Img__'] = document.getElementById('backtest2Img').src;
         localStorage.setItem('goldbreakout_editor_state', JSON.stringify(data));
         showToast('Changes saved ✓');
     }
@@ -644,9 +652,12 @@
                 el.innerHTML = data[key];
             }
         });
+        // Restore images
+        if (data.__strategyImg__) document.getElementById('strategyImg').src = data.__strategyImg__;
+        if (data.__backtest1Img__) document.getElementById('backtest1Img').src = data.__backtest1Img__;
+        if (data.__backtest2Img__) document.getElementById('backtest2Img').src = data.__backtest2Img__;
     }
 
-    // Toast notification
     function showToast(msg) {
         const toast = document.getElementById('toast');
         toast.textContent = msg;
@@ -708,17 +719,13 @@
         showToast('Image updated ✓');
     }
 
-    // ---------- SAVE HTML (download clean production version) ----------
+    // ---------- SAVE HTML (clean production) ----------
     function saveHTML() {
-        // Force any active editing cursor to finalize its changes
         if (document.activeElement) {
             document.activeElement.blur();
         }
-
-        // Save the current state to localStorage
         saveEditableState();
 
-        // Temporarily remove editing attributes and edit-only UI
         const editElements = document.querySelectorAll('[contenteditable]');
         editElements.forEach(el => {
             el.setAttribute('contenteditable', 'false');
@@ -734,10 +741,8 @@
         if (overlay) overlay.style.display = 'none';
         if (toast) toast.style.display = 'none';
 
-        // Capture the clean HTML
         const html = document.documentElement.outerHTML;
 
-        // Restore the editor instantly
         if (gearBtn) gearBtn.style.display = '';
         if (settingsPanel) settingsPanel.style.display = '';
         if (overlay) overlay.style.display = 'none';
@@ -749,13 +754,29 @@
             editElements.forEach(el => el.setAttribute('contenteditable', 'false'));
         }
 
-        // Download the clean file (the counter code is already part of the page)
         const blob = new Blob(['<!DOCTYPE html>\n' + html], {type: 'text/html'});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
         a.download = 'index.html';
         a.click();
         URL.revokeObjectURL(a.href);
+    }
+
+    // ---------- SAVE EDITOR (download updated editor.html) ----------
+    function saveEditor() {
+        if (document.activeElement) {
+            document.activeElement.blur();
+        }
+        saveEditableState();
+
+        const html = document.documentElement.outerHTML;
+        const blob = new Blob(['<!DOCTYPE html>\n' + html], {type: 'text/html'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'editor.html';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        showToast('Editor saved ✓');
     }
 
     // ---------- Theme toggle ----------
@@ -797,13 +818,24 @@
         return (usePound?"#":"") + (r << 16 | g << 8 | b).toString(16).padStart(6,'0');
     }
 
-    // ---------- Mobile menu ----------
-    function toggleMobileMenu() {
+    // ---------- Mobile menu (with outside‑click close fix) ----------
+    function toggleMobileMenu(e) {
+        if (e) e.stopPropagation();
         document.getElementById('mobileDropdown').classList.toggle('open');
     }
     function closeMobileMenu() {
         document.getElementById('mobileDropdown').classList.remove('open');
     }
+
+    // Close menu when clicking outside the navigation
+    document.addEventListener('click', function(e) {
+        const topNav = document.getElementById('topNav');
+        const mobileDropdown = document.getElementById('mobileDropdown');
+        // If the click is outside the topNav AND the menu is open, close it
+        if (topNav && mobileDropdown && !topNav.contains(e.target) && mobileDropdown.classList.contains('open')) {
+            closeMobileMenu();
+        }
+    });
 
     // ---------- Buy form ----------
     document.getElementById('buyNowBtn').addEventListener('click', function() {
