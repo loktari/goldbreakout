@@ -424,8 +424,7 @@
                 <li id="free-li3">✓ Default parameters that we use ourselves</li>
             </ul>
             <div class="mt-8">
-                <!-- Free Download Button 1 with counter -->
-                <a id="freeDownloadBtn" href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="btn-primary" download="" onclick="countClick('free-download-1')">Download Free EA</a>
+                <a id="freeDownloadBtn" href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="btn-primary" download="">Download Free EA</a>
                 <p class="text-xs text-secondary mt-2"><code>GoldBreakoutAI_Free.ex5</code></p>
             </div>
         </div>
@@ -500,8 +499,7 @@
                     <li id="pricing-li2">✓ AI integration via Global Variables</li>
                     <li id="pricing-li3">✓ Lifetime updates &amp; support</li>
                 </ul>
-                <!-- Buy Now Button with counter -->
-                <button id="buyNowBtn" class="btn-primary w-full" onclick="countClick('buy-now')">Buy Now – $1,500 USDC</button>
+                <button id="buyNowBtn" class="btn-primary w-full">Buy Now – $1,500 USDC</button>
                 <div id="contactForm" class="hidden mt-6 w-full text-left">
                     <form action="https://formspree.io/f/mgodwyda" method="POST">
                         <input type="email" name="_replyto" placeholder="Your email address" required="" class="input-field mb-3">
@@ -579,8 +577,7 @@
                 <h3 class="text-xl font-semibold text-primary mb-3" id="install-sub1">Free Backtest EA</h3>
                 <ol class="list-decimal list-inside space-y-2">
                     <li>
-                        <!-- Free Download Button 2 with counter -->
-                        <a id="installDownloadBtn" href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="accent underline" download="" onclick="countClick('free-download-2')">Download free EA</a>
+                        <a id="installDownloadBtn" href="https://github.com/loktari/goldbreakout/raw/refs/heads/main/GoldBreakoutAI_Free.ex5" target="_blank" class="accent underline" download="">Download free EA</a>
                     </li>
                     <li id="install-li1">Move to MT5/Experts folder</li>
                     <li id="install-li2">Restart MT5, run in Strategy Tester on XAUUSD.</li>
@@ -602,41 +599,6 @@
 </main>
 
 <script>
-// ---------- COUNTER (Abacus) ----------
-// Count click and show a quick toast on the live page
-function countClick(buttonId) {
-    try {
-        const url = `https://abacus.jasoncameron.dev/hit/loktari-goldbreakout/${buttonId}`;
-        if (navigator.sendBeacon) {
-            navigator.sendBeacon(url);
-        } else {
-            new Image().src = url;
-        }
-
-        // Visual feedback (will be removed when you export clean HTML via Save HTML)
-        const feedback = document.createElement('div');
-        feedback.textContent = 'Click counted ✓';
-        feedback.style.position = 'fixed';
-        feedback.style.bottom = '5rem';
-        feedback.style.right = '2rem';
-        feedback.style.background = 'var(--accent)';
-        feedback.style.color = 'var(--button-text)';
-        feedback.style.padding = '0.5rem 1.5rem';
-        feedback.style.borderRadius = '2rem';
-        feedback.style.fontWeight = '500';
-        feedback.style.zIndex = '300';
-        document.body.appendChild(feedback);
-        setTimeout(() => feedback.remove(), 1500);
-    } catch (e) {
-        // silently ignore errors
-    }
-}
-
-// ---------- COUNTER URLs for manual checking ----------
-// https://abacus.jasoncameron.dev/get/loktari-goldbreakout/free-download-1
-// https://abacus.jasoncameron.dev/get/loktari-goldbreakout/free-download-2
-// https://abacus.jasoncameron.dev/get/loktari-goldbreakout/buy-now
-
 // ---------- AUTO‑SAVE to localStorage (including images) ----------
 function getElementIdentifier(el) {
     if (el.id) return el.id;
